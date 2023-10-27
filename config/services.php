@@ -14,6 +14,26 @@ return [
     |
     */
 
+    'ozow' => [
+        'active' => env('OZOW_ACTIVE'),
+        'liveUrl' => env('OZOW_LIVE_URL'),
+        'siteCode' => env('OZOW_SITE_CODE'),
+        'privateKey' => env('OZOW_PRIVATE_KEY'),
+        'successUrl' => env('APP_URL').env('OZOW_SUCCESS_URL'),
+        'cancelUrl' => env('APP_URL').env('OZOW_CANCEL_URL'),
+    ],
+
+    'payflex' => [
+        'clientId' => env('PAYFLEX_CLIENT_ID'),
+        'secret' => env('PAYFLEX_CLIENT_SECRET'),
+        'active' => env('PAYFLEX_ACTIVE'),
+        'successUrl' => env('APP_URL').env('PAYFLEX_SUCCESS_URL'),
+        'cancelUrl' => env('APP_URL').env('PAYFLEX_CANCEL_URL'),
+        'baseUrl' => env('PAYFLEX_BASE_URL'),
+        'authUrl' => env('PAYFLEX_AUTH_URL'),
+        'audience' => env('PAYFLEX_AUDIENCE'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

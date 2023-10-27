@@ -57,6 +57,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'admin_url' => env('ADMIN_URL'),
+
     'asset_url' => env('ASSET_URL'),
 
     /*
@@ -159,7 +161,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        App\Providers\HelpersServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -168,6 +170,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\VoltServiceProvider::class,
     ])->toArray(),
 
     /*

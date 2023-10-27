@@ -9,7 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
             ],
             refresh: true,
-            detectTls: 'vapecrew-livewire.test'
+            detectTls: 'puff-daddy.test'
         }),
     ],
 });

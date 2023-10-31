@@ -1,5 +1,5 @@
 <div
-    class="overflow-y-auto fixed top-0 left-0 z-50 w-full h-auto min-h-screen bg-white shadow lg:w-72"
+    class="overflow-y-auto fixed top-0 left-0 w-full h-auto min-h-screen bg-white shadow lg:w-72 z-[9999]"
     x-data="{show: false,activeTab: 'brands'}"
     x-show="show"
     x-transition
@@ -15,7 +15,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6 text-red-600"
+          class="w-6 h-6 text-pink-600"
       >
         <path
             stroke-linecap="round"
@@ -45,7 +45,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-3 h-3 text-red-600"
+              class="w-3 h-3 text-pink-600"
           >
             <path
                 stroke-linecap="round"

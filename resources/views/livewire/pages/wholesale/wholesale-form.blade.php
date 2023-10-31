@@ -29,7 +29,7 @@
                       placeholder="John Doe"
                   >
                   @error('customer.name')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -49,7 +49,7 @@
                       placeholder="vape@nosmoking.com"
                   >
                   @error('customer.email')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -68,7 +68,7 @@
                       placeholder="081 911 9111"
                   >
                   @error('customer.phone')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -86,7 +86,7 @@
                       placeholder="0119119111"
                   >
                   @error('customer.alt_phone')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -104,7 +104,7 @@
                       placeholder="Joe's Vapes PTY Ltd"
                   >
                   @error('customer.registered_company_name')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -122,7 +122,7 @@
                       placeholder="Joe's Vapes"
                   >
                   @error('customer.company')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -140,7 +140,7 @@
                       placeholder="123456789"
                   >
                   @error('customer.vat_number')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -175,7 +175,7 @@
                       placeholder="10 John Doe Street"
                   >
                   @error('line_one')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -194,7 +194,7 @@
                       placeholder="10 The Apartments"
                   >
                   @error('line_two')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -213,7 +213,7 @@
                       placeholder="SomeVille"
                   >
                   @error('suburb')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -232,7 +232,7 @@
                       placeholder="Sandton"
                   >
                   @error('city')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -261,7 +261,7 @@
                   </select>
                   
                   @error('province')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -280,7 +280,7 @@
                       placeholder="1111"
                   >
                   @error('postal_code')
-                  <p class="text-xs text-red-600">{{ $message }}</p>
+                  <p class="text-xs text-pink-600">{{ $message }}</p>
                   @enderror
                 </div>
               </dd>
@@ -356,7 +356,7 @@
                       </div>
                       <div class="flex-shrink-0 items-center ml-4 space-x-6">
                         <a
-                            class="font-medium text-red-600 hover:text-red-500"
+                            class="font-medium text-pink-600 hover:text-pink-500"
                             href="#"
                             wire:click.prevent="removeIdDocument"
                             download
@@ -406,7 +406,7 @@
                       </div>
                       <div class="flex-shrink-0 items-center ml-4 space-x-6">
                         <a
-                            class="font-medium text-red-600 hover:text-red-500"
+                            class="font-medium text-pink-600 hover:text-pink-500"
                             href="#"
                             wire:click.prevent="removeCipc"
                             download
@@ -446,7 +446,7 @@
               wire:model.live="photos"
           >
           @error('photos')
-          <p class="text-xs text-red-600">{{ $message }}</p>
+          <p class="text-xs text-pink-600">{{ $message }}</p>
           @enderror
         </div>
       </div>

@@ -34,7 +34,7 @@
       <a href="/"
          wire:navigate
       >
-        <x-application-logo class="w-auto h-full"/>
+        <x-application-logo class="w-64 h-full"/>
       </a>
     </div>
     <div class="flex-col justify-center items-center min-h-screen bg-gray-100 lg:flex">

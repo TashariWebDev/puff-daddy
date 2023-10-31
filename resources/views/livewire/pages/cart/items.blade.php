@@ -1,15 +1,17 @@
 <div class="justify-between pb-4 mb-4 lg:flex">
   <div class="flex items-center space-x-2">
     <div class="w-24">
-      <img src="{{ $this->item->product->image }}"
-           alt=""
-           class="object-contain w-20 h-20 bg-gray-50 rounded-full"
+      <img
+          src="{{ $this->item->product->image }}"
+          alt=""
+          class="object-contain w-20 h-20 bg-gray-50 rounded-full"
       >
     </div>
     <div>
-      <a href="{{ route('detail',$this->item->product->id) }}"
-         wire:navigate
-         class="font-bold hover:text-red-600 hover:underline"
+      <a
+          href="{{ route('detail',$this->item->product->id) }}"
+          wire:navigate
+          class="font-bold hover:text-pink-600 hover:underline"
       >
         {{ $this->item->product->brand }} {{ $this->item->product->name }}
       </a>
@@ -20,7 +22,7 @@
       </div>
       <button
           wire:click="$dispatch('remove-item', { itemId: {{ $this->item->id }} })"
-          class="text-red-600 hover:text-red-700 text-[12px]"
+          class="text-pink-600 hover:text-pink-700 text-[12px]"
       >
         remove
       </button>

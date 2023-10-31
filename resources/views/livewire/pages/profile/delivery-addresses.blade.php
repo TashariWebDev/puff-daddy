@@ -275,7 +275,7 @@ new class extends Component {
     
     <div class="mt-4">
       <button
-          class="text-red-600 hover:text-red-700"
+          class="text-pink-600 hover:text-pink-700"
           x-on:click="showForm = false"
       >Cancel
       </button>

@@ -1,4 +1,4 @@
-<div class="z-40 pb-2 w-full text-right bg-white lg:fixed">
+<div class="z-50 pb-2 w-full text-right bg-white lg:fixed">
   
   <div class="container flex justify-between items-center px-2 mx-auto">
     
@@ -9,7 +9,6 @@
       >
         <x-application-logo class="w-auto h-16 lg:h-20 drop-shadow"/>
       </a>
-      <p class="hidden font-semibold lg:block">{{ config('app.name') }}</p>
     </div>
     
     <div class="flex space-x-4">
@@ -17,7 +16,7 @@
         @if($order)
           <a
               href="{{ route('cart') }}"
-              class="font-semibold text-gray-600 hover:text-red-600 focus:rounded-sm group focus:outline focus:outline-2 focus:outline-red-500"
+              class="font-semibold text-gray-600 hover:text-pink-600 focus:rounded-sm group focus:outline focus:outline-2 focus:outline-red-500"
               wire:navigate
           >
             <div class="flex items-center space-x-2">
@@ -27,7 +26,7 @@
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6 group-hover:text-red-600"
+                  class="w-6 h-6 group-hover:text-pink-600"
               >
                 <path
                     stroke-linecap="round"
@@ -35,7 +34,7 @@
                     d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                 />
               </svg>
-              <div class="leading-snug text-gray-600 group-hover:text-red-600 text-[10px]">
+              <div class="leading-snug text-gray-600 group-hover:text-pink-600 text-[10px]">
                 <p>{{ $this->order->items->sum('qty') }} items</p>
                 <p class="whitespace-nowrap">
                   R {{ number_format($this->order->getTotal(),2) }}</p>

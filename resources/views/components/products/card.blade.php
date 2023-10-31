@@ -1,5 +1,5 @@
 <div
-    class="p-2 rounded-lg border border-gray-200 lg:p-2"
+    class="p-2 rounded-lg border border-transparent shadow lg:p-2"
     wire:key="{{ $product->id }}"
 >
   
@@ -15,7 +15,7 @@
         class="object-fill object-center w-full bg-contain rounded-md aspect-square"
     >
     @if($product->is_sale)
-      <div class="absolute top-0 right-0 px-1 m-2 bg-red-600 rounded-sm">
+      <div class="absolute top-0 right-0 px-1 m-2 bg-pink-600 rounded-sm">
         <p class="font-bold text-white text-[10px]">SALE</p>
       </div>
     @endif
@@ -67,7 +67,7 @@
       @if ($product->stocks_sum_qty > 0)
         <div class="flex space-x-0.5">
           <x-button
-              class="flex justify-between items-center w-4/6 button-green"
+              class="flex justify-between items-center w-full button-green"
               x-on:click="$dispatch('add-to-cart',{ product: {{$product->id}}, qty: 1 })"
           >
             <p class="font-semibold whitespace-nowrap truncate">
@@ -75,19 +75,6 @@
             </p>
             <div class="hidden lg:block">
               <x-icons.cart class="w-6 h-6 text-green-100 group-hover:text-green-900 group-hover:animate-wiggle"/>
-            </div>
-          </x-button>
-          
-          <x-button
-              class="flex relative justify-center items-center w-2/6 button-green"
-              wire:click.prefetch="showAddToCart('{{ $product->id }}')"
-          >
-            <x-icons.cart class="w-6 h-6 text-green-100 group-hover:text-green-900 group-hover:animate-wiggle"/>
-            
-            <div class="absolute top-0 right-0">
-              <div class="flex space-x-0.5">
-                <x-icons.plus class="w-4 h-4 text-white group-hover:text-green-900"/>
-              </div>
             </div>
           </x-button>
         </div>
@@ -98,14 +85,14 @@
         @if ($product->stocks_sum_qty <= 0)
           <div x-data="{ show:false }">
             <x-button
-                class="flex justify-between items-center w-full button-red-alt"
+                class="flex justify-between items-center w-full button-pink-alt"
                 wire:click="showStockAlert('{{ $product->id }}')"
             >
               <p class="font-semibold whitespace-nowrap truncate">
                 Set Alert
               </p>
               <div>
-                <x-icons.bell class="w-6 h-6 text-red-600 group-hover:text-red-900 group-hover:animate-wiggle"/>
+                <x-icons.bell class="w-6 h-6 text-pink-600 group-hover:text-pink-900 group-hover:animate-wiggle"/>
               </div>
             </x-button>
           </div>

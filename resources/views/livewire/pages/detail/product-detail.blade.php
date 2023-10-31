@@ -7,13 +7,13 @@
         <a
             href="{{ route('welcome',['brandQuery' => $this->product->brand ]) }}"
             wire:navigate
-            class="hover:text-red-600 hover:underline"
+            class="hover:text-pink-600 hover:underline"
         >{{ $this->product->brand }}</a>
         <p>/</p>
         <a
             href="{{ route('welcome',['categoryQuery' => $this->product->category ]) }}"
             wire:navigate
-            class="hover:text-red-600 hover:underline"
+            class="hover:text-pink-600 hover:underline"
         >{{ $this->product->category }}</a>
       </div>
       
@@ -73,7 +73,7 @@
                           <p class="whitespace-nowrap">{{ $feature->name }}</p>
                         @endforeach
                         @if($product->stocks->sum('qty') <= 0)
-                          <p class="text-xs text-red-600">(sold out)</p>
+                          <p class="text-xs text-pink-600">(sold out)</p>
                         @endif
                       </div>
                     </div>
@@ -90,7 +90,7 @@
             @if ($this->product->stocks->sum('qty') > 0)
               <div class="flex space-x-0.5">
                 <x-button
-                    class="flex justify-between items-center w-4/5 button-green"
+                    class="flex justify-between items-center w-full lg:w-72 button-green"
                     x-on:click="$dispatch('add-to-cart',{ product: {{$this->product->id}}, qty: 1 })"
                 >
                   <p class="font-semibold whitespace-nowrap truncate">
@@ -101,18 +101,18 @@
                   </div>
                 </x-button>
                 
-                <x-button
-                    class="flex relative justify-center items-center w-1/5 button-green"
-                    wire:click="showAddToCart('{{ $this->product->id }}')"
-                >
-                  <x-icons.cart class="w-6 h-6 group-hover:animate-wiggle"/>
-                  
-                  <div class="absolute top-0 right-0">
-                    <div class="flex space-x-0.5">
-                      <x-icons.plus class="w-4 h-4"/>
-                    </div>
-                  </div>
-                </x-button>
+                {{--                <x-button--}}
+                {{--                    class="flex relative justify-center items-center w-1/5 button-green"--}}
+                {{--                    wire:click="showAddToCart('{{ $this->product->id }}')"--}}
+                {{--                >--}}
+                {{--                  <x-icons.cart class="w-6 h-6 group-hover:animate-wiggle"/>--}}
+                {{--                  --}}
+                {{--                  <div class="absolute top-0 right-0">--}}
+                {{--                    <div class="flex space-x-0.5">--}}
+                {{--                      <x-icons.plus class="w-4 h-4"/>--}}
+                {{--                    </div>--}}
+                {{--                  </div>--}}
+                {{--                </x-button>--}}
               </div>
             @endif
             
@@ -122,7 +122,7 @@
                 <div x-data="{ show:false }">
                   
                   <x-button
-                      class="flex justify-between items-center w-full button-red-alt"
+                      class="flex justify-between items-center w-full button-pink-alt"
                       wire:click="showStockAlert('{{ $this->product->id }}')"
                   >
                     <p class="font-semibold whitespace-nowrap truncate">

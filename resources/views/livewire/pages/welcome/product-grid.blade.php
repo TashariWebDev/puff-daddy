@@ -107,7 +107,7 @@
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="w-4 h-4 text-red-600 animate-pulse"
+                      class="w-4 h-4 text-pink-600 animate-pulse"
                   >
                     <path
                         stroke-linecap="round"

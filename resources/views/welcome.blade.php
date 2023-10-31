@@ -5,7 +5,7 @@
 >
   <x-header-banners/>
   
-  <div class="py-4 w-full bg-white">
+  <div class="py-4 w-full bg-gray-950">
     <x-scrolling-notifications/>
   </div>
   

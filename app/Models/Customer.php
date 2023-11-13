@@ -61,9 +61,9 @@ class Customer extends Authenticatable
         return $this->hasMany(Note::class);
     }
 
-    public function addresses(): HasMany
+    public function address(): HasOne
     {
-        return $this->hasMany(CustomerAddress::class);
+        return $this->hasOne(CustomerAddress::class);
     }
 
     public function transactions(): HasMany

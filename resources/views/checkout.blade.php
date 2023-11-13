@@ -1,5 +1,5 @@
 <x-base-layout>
-  <div class="flex justify-center items-center w-screen h-screen bg-white">
-    checkout
-  </div>
+
+    <livewire:pages.checkout.checkout />
+
 </x-base-layout>

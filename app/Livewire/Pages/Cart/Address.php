@@ -17,6 +17,7 @@ class Address extends Component
 {
     use WithNotifications;
 
+
     public array $addresses = [];
 
     public $selectedAddressId;
@@ -67,8 +68,8 @@ class Address extends Component
             'customer_id' => auth()->id(),
             'status' => null,
         ])
-            ->withWhereHas('items.product')
-            ->sole();
+                            ->withWhereHas('items.product')
+                            ->sole();
 
         if ($this->addresses) {
             $this->selectedAddressId = is_null($this->order->address_id)
@@ -87,14 +88,15 @@ class Address extends Component
     #[On('update-order')]
     public function getDeliveryOptions(): void
     {
-        $this->deliveryOptions = Delivery::query()
-            ->where('province', '=',
-                $this->selectedAddressProvince)
-            ->where('customer_type', '=', auth()->user()->type())
-            ->orWhere('customer_type', '=', null)
-            ->where('selectable', true)
-            ->orderBy('price', 'asc')
-            ->get();
+        $this->deliveryOptions =
+            Delivery::query()
+                    ->where('province', '=',
+                        $this->selectedAddressProvince)
+                    ->where('customer_type', '=', auth()->user()->type())
+                    ->orWhere('customer_type', '=', null)
+                    ->where('selectable', true)
+                    ->orderBy('price', 'asc')
+                    ->get();
 
     }
 

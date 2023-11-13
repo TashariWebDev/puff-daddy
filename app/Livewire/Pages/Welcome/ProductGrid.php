@@ -3,15 +3,16 @@
 namespace App\Livewire\Pages\Welcome;
 
 use App\Livewire\Traits\WithNotifications;
+use App\Models\Brand;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\StockAlert;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use LaravelIdea\Helper\App\Models\_IH_Product_C;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -55,31 +56,25 @@ class ProductGrid extends Component
 
     public int $selectedProductQtyAvailable;
 
+    public $activeBrands;
+
     #[Rule('required', 'email')]
     public string $email = '';
 
+    public function getProductsProperty(): Builder
+    {
+        return Product::query()
+            ->with('features')
+            ->active()
+            ->inStock()
+            ->withSum('stocks', 'qty');
+    }
+
     public function mount(): void
     {
-        $this->brands = Cache::remember(
-            'brands',
-            now()->addMinutes(5),
-            function () {
-                return Product::where('is_active', true)
-                    ->orderBy('brand')
-                    ->pluck('brand')
-                    ->unique();
-            }
-        );
-        $this->categories = Cache::remember(
-            'categories',
-            now()->addMinutes(5),
-            function () {
-                return Product::where('is_active', true)
-                    ->orderBy('category')
-                    ->pluck('category')
-                    ->unique();
-            }
-        );
+        $this->brands = Brand::with('page')
+            ->orderBy('name')
+            ->get();
     }
 
     #[On('update-brand-filter')]
@@ -101,8 +96,8 @@ class ProductGrid extends Component
     }
 
     #[Computed]
-    public function filteredProducts(
-    ): _IH_Product_C|\Illuminate\Contracts\Pagination\LengthAwarePaginator|LengthAwarePaginator|array {
+    public function filteredProducts(): _IH_Product_C|\Illuminate\Contracts\Pagination\LengthAwarePaginator|LengthAwarePaginator|array
+    {
         return Product::query()
             ->with('features')
             ->onlyActive()

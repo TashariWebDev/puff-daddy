@@ -125,11 +125,48 @@ class Order extends Model
 
     }
 
+    public function verifyIfStockIsAvailable(): RedirectResponse|static
+    {
+        foreach ($this->items as $item) {
+            if ($item->qty > $item->product->qty()) {
+                $item->qty = $item->product->qty();
+                $item->save();
+                if ($item->qty == 0) {
+                    $this->remove($item);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    public function decreaseStock(): static
+    {
+        foreach ($this->items as $item) {
+            $item->product->stocks()->updateOrCreate(
+                [
+                    'order_id' => $this->id,
+                    'type' => 'invoice',
+                    'reference' => $this->number,
+                ],
+                [
+                    'order_id' => $this->id,
+                    'type' => 'invoice',
+                    'reference' => $this->number,
+                    'qty' => 0 - $item->qty,
+                    'cost' => $item->product->cost,
+                ]
+            );
+        }
+
+        return $this;
+    }
+
     /**
      * @throws CouldNotTakeBrowsershot
      */
-    public function print(
-    ): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application {
+    public function print(): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
+    {
         $view = view('templates.pdf.invoice', [
             'order' => $this->load('items'),
         ])->render();

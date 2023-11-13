@@ -2,14 +2,16 @@
 
 namespace App\Livewire\Pages\Wholesale;
 
+use App\Livewire\Forms\CustomerUpdateForm;
 use App\Livewire\Traits\WithNotifications;
 use App\Models\Customer;
+use App\Models\CustomerAddress;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Validation\Rule;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -18,12 +20,18 @@ class WholesaleForm extends Component
     use WithFileUploads;
     use WithNotifications;
 
+    public CustomerUpdateForm $customerUpdateForm;
+
     public Customer $customer;
 
-    #[\Livewire\Attributes\Rule('required', 'file')]
+    public CustomerAddress $address;
+
+    public $activeTab = 'business';
+
+    #[Rule('required', 'file')]
     public $cipc_documents;
 
-    #[\Livewire\Attributes\Rule('required', 'file')]
+    #[Rule('required', 'file')]
     public $id_document;
 
     public array $photos = [];
@@ -57,47 +65,28 @@ class WholesaleForm extends Component
         'other',
     ];
 
-    public function rules(): array
+    public function mount(): void
     {
-        return [
-            'customer.name' => ['required'],
-            'customer.email' => [
-                'required',
-                Rule::unique('customers', 'email')->ignore($this->customer->id),
-            ],
-            'customer.phone' => ['required'],
-            'customer.alt_phone' => ['sometimes'],
-            'customer.company' => ['required'],
-            'customer.registered_company_name' => ['required'],
-            'customer.vat_number' => ['sometimes'],
-        ];
+        $this->customerUpdateForm->setCustomer();
+        $this->address = auth()->user()->address->firstOrCreate();
     }
 
-    public function mount()
+    public function updateCustomer(): void
     {
-        $this->customer = auth()->user();
-
-        $this->customer->makeVisible(['cipc_documents', 'id_document']);
-    }
-
-    public function save(): void
-    {
-        $this->validate();
-        $this->customer->save();
-
+        $this->customerUpdateForm->update();
         $this->notify('Profile updated');
     }
 
     public function updatedCipcDocuments(): void
     {
-        $this->customer->update([
+        auth()->user()->update([
             'cipc_documents' => $this->cipc_documents->store(
                 'uploads',
                 'public'
             ),
         ]);
 
-        $this->cipc_documents = $this->customer->cipc_documents;
+        $this->cipc_documents = auth()->user()->cipc_documents;
 
         $this->notify('Document saved');
     }
@@ -108,11 +97,11 @@ class WholesaleForm extends Component
             'id_document' => ['required', 'file'],
         ]);
 
-        $this->customer->update([
+        auth()->user()->update([
             'id_document' => $this->id_document->store('uploads', 'public'),
         ]);
 
-        $this->id_document = $this->customer->id_document;
+        $this->id_document = auth()->user()->id_document;
 
         $this->notify('Document saved');
     }
@@ -122,7 +111,7 @@ class WholesaleForm extends Component
         $this->validate(['photos' => ['required']]);
 
         foreach ($this->photos as $photo) {
-            $this->customer->businessImages()->create([
+            auth()->user()->businessImages()->create([
                 'photo' => $photo->store('uploads', 'public'),
             ]);
         }
@@ -130,9 +119,9 @@ class WholesaleForm extends Component
         $this->notify('Images saved');
     }
 
-    public function submit(
-    ): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application {
-        $this->customer->update([
+    public function submit(): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
+    {
+        auth()->user()->update([
             'requested_wholesale_account' => true,
         ]);
 
@@ -143,11 +132,11 @@ class WholesaleForm extends Component
 
     public function removeIdDocument(): void
     {
-        if (file_exists('storage/'.$this->customer->id_document)) {
-            unlink('storage/'.$this->customer->id_document);
+        if (file_exists('storage/'.auth()->user()->id_document)) {
+            unlink('storage/'.auth()->user()->id_document);
         }
 
-        $this->customer->update([
+        auth()->user()->update([
             'id_document' => null,
         ]);
 
@@ -158,11 +147,11 @@ class WholesaleForm extends Component
 
     public function removeCipc(): void
     {
-        if (file_exists('storage/'.$this->customer->cipc_documents)) {
-            unlink('storage/'.$this->customer->cipc_documents);
+        if (file_exists('storage/'.auth()->user()->cipc_documents)) {
+            unlink('storage/'.auth()->user()->cipc_documents);
         }
 
-        $this->customer->update([
+        auth()->user()->update([
             'cipc_documents' => null,
         ]);
 
@@ -182,7 +171,7 @@ class WholesaleForm extends Component
             'postal_code' => 'required',
         ]);
 
-        $this->customer->addresses()->create($validatedData);
+        auth()->user()->address->updateOrCreate($validatedData);
 
         $this->reset([
             'province',
@@ -192,8 +181,6 @@ class WholesaleForm extends Component
             'city',
             'postal_code',
         ]);
-
-        $this->customer->refresh();
 
         $this->notify('Address added');
     }

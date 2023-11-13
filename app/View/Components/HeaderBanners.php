@@ -15,7 +15,7 @@ class HeaderBanners extends Component
     {
         $this->banners = Cache::remember(
             'banners',
-            now()->addMinutes(120),
+            now()->addMinutes(10),
             function () {
                 return MarketingBanner::orderBy('order')
                     ->get()

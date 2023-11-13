@@ -27,7 +27,7 @@ new #[Layout('layouts.auth')] class extends Component {
         $validated['password'] = Hash::make($validated['password']);
         $validated['alt_phone'] = $validated['phone'];
 
-        event(new Registered($user = User::create($validated)));
+        event(new Registered($user = Customer::create($validated)));
 
         auth()->login($user);
 
@@ -161,6 +161,7 @@ new #[Layout('layouts.auth')] class extends Component {
         <x-button class="ml-4 button-green">
           {{ __('Register') }}
         </x-button>
+      </div>
     </form>
   </div>
 </div>

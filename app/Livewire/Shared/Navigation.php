@@ -26,11 +26,17 @@ class Navigation extends Component
 
     public Order $order;
 
+    public string $name = '';
+
     #[Rule(['required', 'string', 'email'])]
     public string $email = '';
 
+    public string $phone = '';
+
     #[Rule(['required', 'string'])]
     public string $password = '';
+
+    public string $password_confirmation = '';
 
     #[Rule(['boolean'])]
     public bool $remember = false;
@@ -144,6 +150,7 @@ class Navigation extends Component
         $this->dispatch('close-modal', 'name:add-to-cart-modal');
 
         $this->dispatch('update-order');
+        $this->dispatch('update-cart');
 
     }
 

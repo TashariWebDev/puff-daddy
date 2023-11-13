@@ -8,11 +8,11 @@
     x-on:wire:keydown.escape.window="show = false"
     x-transition
     x-cloak
-    class="overscroll-contain fixed inset-0 z-50"
+    class="overscroll-contain fixed inset-0 z-[9999]"
 >
   
   {{--Background Overlay--}}
-  <div class="fixed inset-0 bg-transparent backdrop-blur"></div>
+  <div class="fixed inset-0 bg-transparent backdrop-blur z-[9999]"></div>
   
   <div
       x-on:click="$dispatch('close-modal')"
@@ -20,7 +20,7 @@
   ></div>
   
   {{--body--}}
-  <div class="overflow-y-scroll fixed inset-0 z-50 p-2 m-auto w-full max-w-4xl bg-white rounded-xl shadow-xl lg:p-6 h-fit max-h-[600px]">
+  <div class="overflow-y-scroll fixed inset-0 p-2 m-auto w-full max-w-4xl bg-white rounded-xl shadow-xl lg:p-6 z-[9999] h-fit max-h-[600px]">
     <div class="flex justify-between items-center">
       <div>
         <p>{{ $title ?? '' }}</p>

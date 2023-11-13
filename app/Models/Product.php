@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -19,6 +21,16 @@ class Product extends Model
     public function features(): HasMany
     {
         return $this->hasMany(Feature::class);
+    }
+
+    public function seoBrand(): string
+    {
+        return Str::slug(Str::lower($this->brand), '-');
+    }
+
+    public function seoName(): string
+    {
+        return Str::slug(Str::lower($this->name), '-');
     }
 
     //    public function product(): BelongsTo
@@ -59,6 +71,22 @@ class Product extends Model
     }
 
     public function wholesalePrice(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => to_rands($value),
+            set: fn ($value) => to_cents($value)
+        );
+    }
+
+    public function oldRetailPrice(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => to_rands($value),
+            set: fn ($value) => to_cents($value)
+        );
+    }
+
+    public function oldWholesalePrice(): Attribute
     {
         return new Attribute(
             get: fn ($value) => to_rands($value),
@@ -115,6 +143,22 @@ class Product extends Model
     }
 
     public function scopeOnlyActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeInStock($query)
+    {
+        $query->withWhereHas('stocks', function ($query) {
+            $query
+                ->select(DB::raw('SUM(qty) AS available'))
+                ->having('available', '>', 0);
+        });
+
+        return $query;
+    }
+
+    public function scopeActive($query)
     {
         return $query->where('is_active', true);
     }

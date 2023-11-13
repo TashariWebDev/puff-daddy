@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Detail;
 
 use App\Livewire\Traits\WithNotifications;
+use App\Models\Brand;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\StockAlert;
@@ -39,6 +40,14 @@ class ProductDetail extends Component
     {
         return Product::where('id', '=', $this->productId)
             ->firstOrFail();
+    }
+
+    #[Computed]
+    public function brand(): Model|_IH_Product_QB|Builder|Product
+    {
+        return Brand::where('name', '=', $this->product->brand)
+            ->with('page')
+            ->first();
     }
 
     public function updateProduct($productId): void

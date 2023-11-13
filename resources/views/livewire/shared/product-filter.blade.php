@@ -1,7 +1,8 @@
 <div
-    class="overflow-y-auto fixed top-0 left-0 w-full h-auto min-h-screen bg-white shadow lg:w-72 z-[9999]"
+    class="overflow-y-auto fixed top-0 left-0 z-50 w-full h-auto min-h-screen bg-white shadow lg:w-72"
     x-data="{show: false,activeTab: 'brands'}"
     x-show="show"
+    x-cloak
     x-transition
     x-on:click.outside="show = false"
     x-on:show-filters.window="show = !show"

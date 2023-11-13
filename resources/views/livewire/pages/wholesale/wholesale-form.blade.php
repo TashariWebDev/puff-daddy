@@ -1,162 +1,188 @@
 <div>
-  <div>
-    <div class="overflow-hidden bg-white">
-      
-      <div class="p-2 text-white rounded-lg border-t bg-slate-900">
-        <h3 class="text-lg font-medium leading-6">Business & contact Information</h3>
-        <p class="mt-1 max-w-2xl text-sm text-gray-300">
-          Kindly supply us with your business and contact info.
-        </p>
+
+{{-- Business Info --}}
+  <div class="mb-3">
+    <div
+        class="bg-white rounded-b-lg shadow"
+    >
+       <button
+           class="block p-2 w-full text-left text-white rounded-lg border-t shadow bg-slate-900"
+           wire:click="$set('activeTab','business')"
+       >
+          <h3 class="text-lg font-medium leading-6">Business & contact Information</h3>
+          <p class="mt-1 max-w-2xl text-sm text-gray-300">
+            Kindly supply us with your business and contact info.
+          </p>
+      </button>
+      @if($activeTab === 'business')
+        <div>
+        <form wire:submit="updateCustomer">
+              <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+                
+                <dt class="text-sm font-medium text-gray-500">Full name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <div>
+                    <label
+                        class="hidden"
+                        for="name"
+                    ></label>
+                    <input
+                        id="name"
+                        type="text"
+                        required
+                        class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
+                        wire:model.live="customerUpdateForm.name"
+                        placeholder="John Doe"
+                    >
+                    @error('customerUpdateForm.name')
+                    <p class="text-xs text-pink-600">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </dd>
+                
+                <dt class="text-sm font-medium text-gray-500">Email</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <div>
+                    <label
+                        class="hidden"
+                        for="email"
+                    ></label>
+                    <input
+                        id="email"
+                        type="email"
+                        required
+                        class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
+                        wire:model.live="customerUpdateForm.email"
+                        placeholder="vape@nosmoking.com"
+                    >
+                    @error('customerUpdateForm.email')
+                    <p class="text-xs text-pink-600">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </dd>
+                <dt class="text-sm font-medium text-gray-500">Mobile phone</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <div>
+                    <label
+                        class="hidden"
+                        for="phone"
+                    ></label>
+                    <input
+                        id="phone"
+                        type="text"
+                        required
+                        class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
+                        wire:model.live="customerUpdateForm.phone"
+                        placeholder="081 911 9111"
+                    >
+                    @error('customerUpdateForm.phone')
+                    <p class="text-xs text-pink-600">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </dd>
+                <dt class="text-sm font-medium text-gray-500">Alt phone (landline)</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <div>
+                    <label
+                        class="hidden"
+                        for="alt_phone"
+                    ></label>
+                    <input
+                        id="alt_phone"
+                        type="text"
+                        class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
+                        wire:model.live="customerUpdateForm.alt_phone"
+                        placeholder="0119119111"
+                    >
+                    @error('customerUpdateForm.alt_phone')
+                    <p class="text-xs text-pink-600">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </dd>
+                <dt class="text-sm font-medium text-gray-500">Company registered name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <div>
+                    <label
+                        class="hidden"
+                        for="registered_company_name"
+                    ></label>
+                    <input
+                        id="registered_company_name"
+                        type="text"
+                        class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
+                        wire:model.live="customerUpdateForm.registered_company_name"
+                        placeholder="Joe's Vapes PTY Ltd"
+                    >
+                    @error('customerUpdateForm.registered_company_name')
+                    <p class="text-xs text-pink-600">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </dd>
+                <dt class="text-sm font-medium text-gray-500">Company trading name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <div>
+                    <label
+                        class="hidden"
+                        for="company"
+                    ></label>
+                    <input
+                        id="company"
+                        type="text"
+                        class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
+                        wire:model.live="customerUpdateForm.company"
+                        placeholder="Joe's Vapes"
+                    >
+                    @error('customerUpdateForm.company')
+                    <p class="text-xs text-pink-600">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </dd>
+                <dt class="text-sm font-medium text-gray-500">Company VAT Number (optional)</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                  <div>
+                    <label
+                        class="hidden"
+                        for="vat_number"
+                    ></label>
+                    <input
+                        id="vat_number"
+                        type="text"
+                        class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
+                        wire:model.live="customerUpdateForm.vat_number"
+                        placeholder="123456789"
+                    >
+                    @error('customerUpdateForm.vat_number')
+                    <p class="text-xs text-pink-600">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </dd>
+              </div>
+              <div class="flex justify-end items-center px-6 pb-10">
+                <x-button class="w-1/5 button-green">
+                  Save
+                </x-button>
+              </div>
+            </form>
       </div>
-      
-      <div class="py-5 px-4 border-t border-gray-200 sm:p-0">
-        <dl class="sm:divide-y sm:divide-gray-200">
-          <form wire:submit="save">
-            <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
-              
-              <dt class="text-sm font-medium text-gray-500">Full name</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <div>
-                  <label
-                      class="hidden"
-                      for="name"
-                  ></label>
-                  <input
-                      id="name"
-                      type="text"
-                      required
-                      wire:model.live="customer.name"
-                      placeholder="John Doe"
-                  >
-                  @error('customer.name')
-                  <p class="text-xs text-pink-600">{{ $message }}</p>
-                  @enderror
-                </div>
-              </dd>
-              
-              <dt class="text-sm font-medium text-gray-500">Email</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <div>
-                  <label
-                      class="hidden"
-                      for="email"
-                  ></label>
-                  <input
-                      id="email"
-                      type="email"
-                      required
-                      wire:model.live="customer.email"
-                      placeholder="vape@nosmoking.com"
-                  >
-                  @error('customer.email')
-                  <p class="text-xs text-pink-600">{{ $message }}</p>
-                  @enderror
-                </div>
-              </dd>
-              <dt class="text-sm font-medium text-gray-500">Mobile phone</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <div>
-                  <label
-                      class="hidden"
-                      for="phone"
-                  ></label>
-                  <input
-                      id="phone"
-                      type="text"
-                      required
-                      wire:model.live="customer.phone"
-                      placeholder="081 911 9111"
-                  >
-                  @error('customer.phone')
-                  <p class="text-xs text-pink-600">{{ $message }}</p>
-                  @enderror
-                </div>
-              </dd>
-              <dt class="text-sm font-medium text-gray-500">Alt phone (landline)</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <div>
-                  <label
-                      class="hidden"
-                      for="alt_phone"
-                  ></label>
-                  <input
-                      id="alt_phone"
-                      type="text"
-                      wire:model.live="customer.alt_phone"
-                      placeholder="0119119111"
-                  >
-                  @error('customer.alt_phone')
-                  <p class="text-xs text-pink-600">{{ $message }}</p>
-                  @enderror
-                </div>
-              </dd>
-              <dt class="text-sm font-medium text-gray-500">Company registered name</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <div>
-                  <label
-                      class="hidden"
-                      for="registered_company_name"
-                  ></label>
-                  <input
-                      id="registered_company_name"
-                      type="text"
-                      wire:model.live="customer.registered_company_name"
-                      placeholder="Joe's Vapes PTY Ltd"
-                  >
-                  @error('customer.registered_company_name')
-                  <p class="text-xs text-pink-600">{{ $message }}</p>
-                  @enderror
-                </div>
-              </dd>
-              <dt class="text-sm font-medium text-gray-500">Company trading name</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <div>
-                  <label
-                      class="hidden"
-                      for="company"
-                  ></label>
-                  <input
-                      id="company"
-                      type="text"
-                      wire:model.live="customer.company"
-                      placeholder="Joe's Vapes"
-                  >
-                  @error('customer.company')
-                  <p class="text-xs text-pink-600">{{ $message }}</p>
-                  @enderror
-                </div>
-              </dd>
-              <dt class="text-sm font-medium text-gray-500">Company VAT Number (optional)</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <div>
-                  <label
-                      class="hidden"
-                      for="vat_number"
-                  ></label>
-                  <input
-                      id="vat_number"
-                      type="text"
-                      wire:model.live="customer.vat_number"
-                      placeholder="123456789"
-                  >
-                  @error('customer.vat_number')
-                  <p class="text-xs text-pink-600">{{ $message }}</p>
-                  @enderror
-                </div>
-              </dd>
-            </div>
-            <div class="flex justify-end items-center px-6 pb-10">
-              <x-button class="w-1/5 button-green">
-                Save
-              </x-button>
-            </div>
-          </form>
-          
-          <div class="p-2 text-white rounded-lg border-t bg-slate-900">
+      @endif
+    </div>
+  </div>
+  
+  {{-- Address Info --}}
+  <div class="mb-3">
+    <div
+        class="bg-white rounded-b-lg shadow"
+    >
+       <button
+           class="block p-2 w-full text-left text-white rounded-lg border-t shadow bg-slate-900"
+           wire:click="$set('activeTab','address')"
+       >
             <h3 class="text-lg">Delivery Addresses</h3>
             <p class="text-xs text-gray-300">Add all your delivery addresses</p>
-          </div>
-          
+      </button>
+      
+      @if($activeTab === 'address')
+        <div>
           <form wire:submit.prevent="saveAddress">
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
               
@@ -171,6 +197,7 @@
                       id="line_one"
                       type="text"
                       required
+                      class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
                       wire:model.live="line_one"
                       placeholder="10 John Doe Street"
                   >
@@ -190,6 +217,7 @@
                   <input
                       id="line_two"
                       type="text"
+                      class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
                       wire:model.live="line_two"
                       placeholder="10 The Apartments"
                   >
@@ -209,6 +237,7 @@
                   <input
                       id="suburb"
                       type="text"
+                      class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
                       wire:model.live="suburb"
                       placeholder="SomeVille"
                   >
@@ -228,6 +257,7 @@
                   <input
                       id="city"
                       type="text"
+                      class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
                       wire:model.live="city"
                       placeholder="Sandton"
                   >
@@ -245,7 +275,7 @@
                       for="province"
                   ></label>
                   <select
-                      class="w-full rounded border-gray-300"
+                      class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
                       id="province"
                       wire:model.live="province"
                   >
@@ -276,6 +306,7 @@
                   <input
                       id="postal_code"
                       type="text"
+                      class="rounded border-gray-400 focus:border-amber-300 focus:ring-0 focus:outline-none outline-amber-300"
                       wire:model.live="postal_code"
                       placeholder="1111"
                   >
@@ -292,29 +323,29 @@
               </x-button>
             </div>
           </form>
-          
-          <div class="py-5 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-slate-50">
-            <dt class="text-sm font-medium text-slate-500 dark:text-slate-400">Addresses</dt>
-            <dd class="mt-1 text-sm sm:col-span-2 sm:mt-0 text-slate-900 dark:text-slate-300">
-              @foreach ($customer->addresses as $address)
-                <div class="py-2">
-                  <p>
-                    {{ ucwords($address->line_one) }} {{ ucwords($address->line_two) }}
-                    {{ ucwords($address->suburb) }}
-                    {{ ucwords($address->city) }} {{ ucwords($address->province) }}
-                    {{ $address->postal_code }}
-                  </p>
-                </div>
-              @endforeach
-            </dd>
-          </div>
-          
-          <div class="p-2 text-white rounded-lg border-t bg-slate-900">
+      </div>
+      @endif
+    </div>
+  </div>
+  
+  
+  {{-- Documents --}}
+  
+  <div class="mb-3">
+    <div
+        class="bg-white rounded-b-lg shadow"
+    >
+       <button
+           class="block p-2 w-full text-left text-white rounded-lg border-t shadow bg-slate-900"
+           wire:click="$set('activeTab','documents')"
+       >
             <h3 class="text-lg">Documents</h3>
             <p class="text-xs text-gray-300">Upload your company and director documents</p>
-          </div>
-          
-          <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+      </button>
+      
+      @if($activeTab === 'documents')
+        <div>
+         <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">Documents</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <ul
@@ -335,7 +366,7 @@
                       >
                     </div>
                   </div>
-                  @if ($customer->id_document)
+                  @if (auth()->user()->id_document)
                     <div class="flex justify-between items-center py-3 pr-4 pl-3 text-sm">
                       <div class="flex flex-1 items-center w-0">
                         <!-- Heroicon name: mini/paper-clip -->
@@ -363,7 +394,7 @@
                         >Remove</a>
                         <a
                             class="font-medium text-indigo-600 hover:text-indigo-500"
-                            href="{{ asset('storage/' . $customer->id_document) }}"
+                            href="{{ asset('storage/' . auth()->user()->id_document) }}"
                             download
                         >Download</a>
                       </div>
@@ -385,7 +416,7 @@
                       >
                     </div>
                   </div>
-                  @if ($customer->cipc_documents)
+                  @if (auth()->user()->cipc_documents)
                     <div class="flex justify-between items-center py-3 pr-4 pl-3 text-sm">
                       <div class="flex flex-1 items-center w-0">
                         <!-- Heroicon name: mini/paper-clip -->
@@ -413,7 +444,7 @@
                         >Remove</a>
                         <a
                             class="font-medium text-indigo-600 hover:text-indigo-500"
-                            href="{{ asset('storage/' . $customer->cipc_documents) }}"
+                            href="{{ asset('storage/' . auth()->user()->cipc_documents) }}"
                             download
                         >Download</a>
                       </div>
@@ -424,18 +455,33 @@
               </ul>
             </dd>
           </div>
-        </dl>
       </div>
+      @endif
+    </div>
+  </div>
+  
+  {{--  Photos --}}
+  
+  <div class="mb-3">
+    <div
+        class="bg-white rounded-b-lg shadow"
+    >
+       <button
+           class="block p-2 w-full text-left text-white rounded-lg border-t shadow bg-slate-900"
+           wire:click="$set('activeTab','photos')"
+       >
+            <h3 class="text-lg">Photos</h3>
+            <p class="text-xs text-gray-300">
+              Upload photos of the interior and exterior of your business.
+            </p>
+      </button>
       
-      <div class="p-2 text-white rounded-lg border-t bg-slate-900">
-        <h3 class="text-lg">Photos</h3>
-        <p class="text-xs text-gray-300">
-          Upload photos of the interior and exterior of your business.
-        </p>
-      </div>
       
-      <div class="py-4 px-6 mt-2 bg-gray-100 rounded border-t">
-        <div>
+      @if($activeTab === 'photos')
+        <div
+            class="p-2"
+        >
+          <div>
           <label for="photos">
             Drop multiple photos or click here to upload (.png or .jpeg - less than 1MB each)
           </label>
@@ -445,35 +491,34 @@
               multiple
               wire:model.live="photos"
           >
-          @error('photos')
-          <p class="text-xs text-pink-600">{{ $message }}</p>
-          @enderror
+            @error('photos')
+            <p class="text-xs text-pink-600">{{ $message }}</p>
+            @enderror
         </div>
-      </div>
-      
-      <div class="container grid grid-cols-2 gap-6 p-6 w-full bg-white rounded-lg lg:grid-cols-3 dark:bg-slate-800">
-        @foreach ($customer->businessImages as $image)
-          <div class="w-full bg-white rounded-lg shadow">
+        <div class="container grid grid-cols-2 gap-6 p-6 w-full bg-white rounded-lg lg:grid-cols-3 dark:bg-slate-800">
+        @foreach (auth()->user()->businessImages as $image)
+            <div class="w-full bg-white rounded-lg shadow">
             <img
                 class="object-cover"
                 src="{{ asset('storage/' . $image->photo) }}"
                 alt="image"
             >
           </div>
-        @endforeach
+          @endforeach
       </div>
-      
-      @if ($customer->businessImages->count() && $customer->id_document && $customer->cipc_documents)
-        <div class="flex justify-end items-center py-4 w-full border-t">
-          <x-button
-              class="w-1/5 button-green"
-              wire:click="submit"
-          >Submit Application
-          </x-button>
-        </div>
+      </div>
       @endif
     </div>
-  
   </div>
+  
+    <div>
+        <div class="flex justify-end items-center py-4 w-full border-t">
+            <x-button
+                class="w-1/5 button-green"
+                wire:click="submit"
+            >Submit Application
+            </x-button>
+          </div>
+    </div>
 
 </div>

@@ -7,9 +7,17 @@
 }
 
 .button-green {
-    @apply bg-[#5CC6CF] border border-transparent hover:opacity-90  hover:border-[#5CC6CF] text-white text-sm lg:text-base px-2 font-semibold;
+    @apply bg-teal-400 border border-transparent hover:bg-teal-500 hover:border-teal-500 text-white text-sm  px-2 font-semibold;
 }
 
 .button-pink-alt {
-    @apply bg-white border border-pink-600 hover:bg-pink-200 text-pink-600 hover:text-pink-800;
+    @apply bg-white border text-sm font-semibold border-pink-600 hover:bg-pink-200 text-pink-600 hover:text-pink-800;
+}
+
+label {
+    @apply text-xs text-gray-500;
+}
+
+input[type=text], input[type=email], select, textarea {
+    @apply rounded-md outline-none border-gray-200 focus:border-none focus:outline-none focus:ring-teal-400 focus:shadow;
 }

@@ -9,15 +9,15 @@ use Livewire\Component;
 
 class Payment extends Component
 {
-    public $balance = 0;
+    //    public $balance = 0;
+    //
+    //    public $amount = 0;
 
-    public $amount = 0;
-
-    public function mount(): void
-    {
-        $this->balance = auth()->user()->getRunningBalance();
-        $this->amount = $this->balance;
-    }
+    //    public function mount(): void
+    //    {
+    //        $this->balance = auth()->user()->getRunningBalance();
+    //        $this->amount = $this->balance;
+    //    }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {

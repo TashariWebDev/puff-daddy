@@ -1,8 +1,8 @@
 <div class="z-30 bg-gray-50">
-    
+
     {{-- search and filters --}}
-    <div class="flex z-30 justify-center items-center py-6 bg-black lg:px-8">
-        
+    <div class="flex z-30 justify-center items-center py-6 px-1 bg-black lg:px-8">
+
         <div class="flex px-2 mt-1 w-full rounded-md shadow-sm md:w-full">
             <div class="flex relative flex-grow items-stretch focus-within:z-10">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -24,7 +24,7 @@
                     placeholder="search by brand, flavour or category"
                 >
             </div>
-            
+
             <button
                 class="inline-flex relative items-center py-2 px-4 -ml-px space-x-2 text-sm font-medium text-gray-700 bg-gray-50 border border-gray-300 hover:bg-gray-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
                 type="button"
@@ -45,7 +45,7 @@
                     />
                 </svg>
             </button>
-            
+
             <button
                 class="inline-flex relative items-center py-2 px-4 -ml-px space-x-2 text-sm font-medium text-gray-700 bg-gray-50 rounded-r-md border border-gray-300 hover:bg-gray-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
                 type="button"
@@ -68,11 +68,11 @@
                     />
                 </svg>
             </button>
-        
+
         </div>
     </div>
-    
-    
+
+
     {{--brands filter--}}
     <div class="overflow-hidden py-6 mx-auto bg-gray-50 sm:px-6 lg:px-8">
         <div
@@ -94,7 +94,7 @@
                             <p class="font-semibold text-left text-white capitalize lg:text-md">{{$brand->name}}</p>
                         </div>
                     </button>
-                    
+
                     @if($brand->page)
                         <div class="mt-4">
                             <a href="{{ route('preview',$brand->page->id) }}"
@@ -112,18 +112,18 @@
             @endforeach
         </div>
     </div>
-    
-    
+
+
     <div
         class="overflow-hidden pb-6 mx-auto sm:px-6 lg:px-8"
     >
-        
+
         <div class="overflow-hidden py-4 px-3 mx-auto md:px-0">
             {{ $this->filteredProducts->links() }}
         </div>
-        
+
         <h2 class="sr-only">Products</h2>
-        
+
         <div class="grid grid-cols-2 gap-x-2 gap-y-4 -mx-px sm:mx-0 md:grid-cols-4 lg:grid-cols-6 lg:gap-4 lg:gap-y-6">
             @forelse($this->filteredProducts as $product)
                 <x-products.card :product="$product" />
@@ -134,7 +134,7 @@
                         <p class="text-lg text-slate-500">
                             Looks like we have no results found based on your filter or search!
                         </p>
-                        
+
                         <div class="mt-6">
                             <button
                                 class="px-1 bg-gray-200 rounded-lg border shadow hover:bg-gray-100"
@@ -163,26 +163,26 @@
                 </div>
             @endforelse
         </div>
-        
+
         <div class="overflow-hidden py-4 px-3 mx-auto md:px-0">
             {{ $this->filteredProducts->links() }}
         </div>
-    
+
     </div>
-    
+
     @if($selectedProduct)
         <x-modal
             title="Set stock alert"
             name="stock-alerts"
         >
-            
+
             <div class="my-6">
                 <p class="font-bold text-gray-600">
                     We will email you as soon as {{ $selectedProduct->brand }} {{ $selectedProduct->name }} is
                     re-stocked
                 </p>
             </div>
-            
+
             <form wire:submit="saveStockAlert">
                 <div class="mt-4">
                     <label
@@ -202,7 +202,7 @@
                 </div>
                 <div class="mt-4">
                     <x-button class="flex justify-between items-center w-full button-green">
-                        
+
                         <p class="font-semibold whitespace-nowrap truncate">
                             NOTIFY ME
                         </p>
@@ -212,7 +212,7 @@
             </form>
         </x-modal>
     @endif
-    
+
     {{--  @if($selectedProduct)--}}
     {{--    <x-modal--}}
     {{--        title="Add to cart"--}}

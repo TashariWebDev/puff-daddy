@@ -32,13 +32,13 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->address = auth()->user()->address->first();
-        $this->line_one = $this->address->line_one;
-        $this->line_two = $this->address->line_two;
-        $this->suburb = $this->address->suburb;
-        $this->city = $this->address->city;
-        $this->province = $this->address->province;
-        $this->postal_code = $this->address->postal_code;
+        $this->address = auth()->user()->address ?? new CustomerAddress();
+        $this->line_one = $this->address->line_one ?? '';
+        $this->line_two = $this->address->line_two ?? '';
+        $this->suburb = $this->address->suburb ?? '';
+        $this->city = $this->address->city ?? '';
+        $this->province = $this->address->province ?? '';
+        $this->postal_code = $this->address->postal_code ?? '';
     }
 
     public function updateAddress()
@@ -61,17 +61,17 @@ new class extends Component {
 }; ?>
 
 <section>
-    
+
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             Delivery Address.
         </h2>
-        
+
         <p class="mt-1 text-sm text-gray-600">
             Update your delivery address.
         </p>
     </header>
-    
+
     <form wire:submit.prevent="updateAddress"
           class="p-6 mt-6 space-y-6 bg-white rounded-lg"
     >
@@ -94,7 +94,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-        
+
         <div class="py-2">
             <label for="line_two">Apartment/Building & Unit No. (optional)</label>
             <div class="mt-1">
@@ -112,7 +112,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-        
+
         <div class="py-2">
             <label for="suburb">
                 Suburb
@@ -132,7 +132,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-        
+
         <div class="py-2">
             <label for="city">
                 City
@@ -152,7 +152,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-        
+
         <div class="py-2">
             <label for="province">Province</label>
             <div class="mt-1 w-full">
@@ -181,7 +181,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-        
+
         <div class="py-2">
             <label for="postal_code">
                 Postal code

@@ -1,7 +1,7 @@
 <div class="z-40 py-1 w-full text-right bg-black lg:fixed">
-    
+
     <div class="container flex justify-between items-center px-2 mx-auto">
-        
+
         <div class="flex justify-center items-center space-x-4">
             <a
                 href="{{ route('welcome') }}"
@@ -13,7 +13,7 @@
                 />
             </a>
         </div>
-        
+
         <div class="flex space-x-4">
             @auth
                 @if($order)
@@ -45,10 +45,10 @@
                         </div>
                     </a>
                 @endif
-                
-                
-                
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
+
+
+
+                <div class="sm:flex sm:items-center sm:ml-6">
                     <x-dropdown
                         align="right"
                         width="48"
@@ -60,7 +60,7 @@
                                     x-text="name"
                                     x-on:profile-updated.window="name = $event.detail.name"
                                 ></div>
-                                
+
                                 <div class="ml-1">
                                     <svg
                                         class="w-4 h-4 fill-current"
@@ -76,7 +76,7 @@
                                 </div>
                             </button>
                         </x-slot>
-                        
+
                         <x-slot name="content">
                             <x-dropdown-link
                                 :href="route('dashboard')"
@@ -84,14 +84,14 @@
                             >
                                 {{ __('Dashboard') }}
                             </x-dropdown-link>
-                            
+
                             <x-dropdown-link
                                 :href="route('profile')"
                                 wire:navigate
                             >
                                 {{ __('Profile') }}
                             </x-dropdown-link>
-                            
+
                             @if( !auth()->user()->isWholesale() )
                                 <x-dropdown-link
                                     :href="route('wholesale-application')"
@@ -100,7 +100,7 @@
                                     Wholesale
                                 </x-dropdown-link>
                             @endif
-                            
+
                             <!-- Authentication -->
                             <button
                                 wire:click="logout"
@@ -114,25 +114,25 @@
                     </x-dropdown>
                 </div>
             @else
-                
+
                 <button
                     class="font-semibold text-teal-400 hover:text-teal-600 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500"
                     x-on:click="$dispatch('open-modal',{name: 'login-modal'})"
                 >
                     Log in
                 </button>
-                
+
                 <button
                     class="font-semibold text-teal-400 hover:text-teal-600 focus:rounded-sm focus:outline focus:outline-2 focus:outline-red-500"
                     x-on:click="$dispatch('open-modal',{name: 'register-modal'})"
                 >
                     Register
                 </button>
-            
+
             @endauth
         </div>
     </div>
-    
+
     <x-modal
         title="Sign in to your account"
         name="login-modal"
@@ -143,7 +143,7 @@
                 class="mb-4"
                 :status="session('status')"
             />
-            
+
             <div class="p-6 w-full text-left bg-white rounded-lg">
                 <form wire:submit="login">
                     <!-- Email Address -->
@@ -167,14 +167,14 @@
                             class="mt-2"
                         />
                     </div>
-                    
+
                     <!-- Password -->
                     <div class="mt-4">
                         <x-input-label
                             for="password"
                             :value="__('Password')"
                         />
-                        
+
                         <x-text-input
                             wire:model="password"
                             id="password"
@@ -184,13 +184,13 @@
                             required
                             autocomplete="current-password"
                         />
-                        
+
                         <x-input-error
                             :messages="$errors->get('password')"
                             class="mt-2"
                         />
                     </div>
-                    
+
                     <!-- Remember Me -->
                     <div class="block mt-4">
                         <label
@@ -207,7 +207,7 @@
                             <span class="ml-2 text-sm text-teal-400">{{ __('Remember me') }}</span>
                         </label>
                     </div>
-                    
+
                     <div class="flex justify-end items-center mt-4">
                         @if (Route::has('password.request'))
                             <a
@@ -218,13 +218,13 @@
                                 {{ __('Forgot your password?') }}
                             </a>
                         @endif
-                        
+
                         <x-button class="ml-3 button-green">
                             {{ __('Log in') }}
                         </x-button>
                     </div>
                 </form>
-            
+
             </div>
             <div class="flex justify-end py-6">
                 <a
@@ -234,14 +234,14 @@
             </div>
         </div>
     </x-modal>
-    
+
     <x-modal
         title="Sign up a new account"
         name="register-modal"
     >
         <div class="p-2 w-full">
             <div class="p-6 w-full text-left bg-white rounded-lg">
-                
+
                 <form wire:submit="register">
                     <!-- Name -->
                     <div>
@@ -264,7 +264,7 @@
                             class="mt-2"
                         />
                     </div>
-                    
+
                     <!-- Phone -->
                     <div class="mt-4">
                         <x-input-label
@@ -285,7 +285,7 @@
                             class="mt-2"
                         />
                     </div>
-                    
+
                     <!-- Email Address -->
                     <div class="mt-4">
                         <x-input-label
@@ -306,14 +306,14 @@
                             class="mt-2"
                         />
                     </div>
-                    
+
                     <!-- Password -->
                     <div class="mt-4">
                         <x-input-label
                             for="password"
                             :value="__('Password')"
                         />
-                        
+
                         <x-text-input
                             wire:model="password"
                             id="password"
@@ -323,20 +323,20 @@
                             required
                             autocomplete="new-password"
                         />
-                        
+
                         <x-input-error
                             :messages="$errors->get('password')"
                             class="mt-2"
                         />
                     </div>
-                    
+
                     <!-- Confirm Password -->
                     <div class="mt-4">
                         <x-input-label
                             for="password_confirmation"
                             :value="__('Confirm Password')"
                         />
-                        
+
                         <x-text-input
                             wire:model="password_confirmation"
                             id="password_confirmation"
@@ -346,13 +346,13 @@
                             required
                             autocomplete="new-password"
                         />
-                        
+
                         <x-input-error
                             :messages="$errors->get('password_confirmation')"
                             class="mt-2"
                         />
                     </div>
-                    
+
                     <div class="flex justify-end items-center mt-4">
                         <a
                             class="text-sm text-teal-400 underline rounded-md hover:text-teal-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
@@ -361,7 +361,7 @@
                         >
                             {{ __('Already registered?') }}
                         </a>
-                        
+
                         <x-button class="ml-4 button-green">
                             {{ __('Register') }}
                         </x-button>

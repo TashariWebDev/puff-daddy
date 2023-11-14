@@ -1,6 +1,6 @@
 <div>
     <div
-        class="py-4 bg-black"
+        class="py-4 px-2 bg-black"
     >
         <h2 class="sr-only">Our perks</h2>
         <div

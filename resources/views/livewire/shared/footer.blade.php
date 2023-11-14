@@ -1,7 +1,7 @@
 <div>
     <div class="px-4 w-full bg-black lg:py-10">
         <div class="grid grid-cols-1 lg:grid-cols-4">
-            <div class="lg:col-span-2">
+            <div class="pb-2 lg:col-span-2">
                 <div class="lg:px-4">
                     <x-application-logo
                         class="w-32 lg:w-72"
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="lg:px-4">
                 <h2 class="font-semibold text-white">Featured Brands</h2>
                 <div class="py-2">
@@ -59,7 +59,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="flex-col space-y-3 lg:px-4">
                 <h2 class="font-semibold text-white">Our Company</h2>
                 <div>
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="flex justify-between items-center p-2 w-screen bg-black">
         <div class="pl-4 text-center lg:text-left">
             <p class="text-sm font-bold text-white uppercase whitespace-nowrap">
@@ -115,7 +115,7 @@
                 class="text-sm text-white dark:text-slate-400"
                 id="developer_link_on_footer"
             >
-                
+
                 <svg
                     class="hidden h-4 dark:block"
                     width="100%"
@@ -197,7 +197,7 @@
         </g>
     </g>
 </svg>
-                
+
                 <svg
                     class="block h-4 dark:hidden"
                     width="100%"
@@ -277,8 +277,8 @@
         </g>
     </g>
 </svg>
-            
-            
+
+
             </a>
         </div>
     </div>

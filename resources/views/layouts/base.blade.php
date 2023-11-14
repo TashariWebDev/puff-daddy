@@ -10,7 +10,7 @@
         name="csrf-token"
         content="{{ csrf_token() }}"
     >
-    
+
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
@@ -24,21 +24,21 @@
         href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700;900&family=Poppins&display=swap"
         rel="stylesheet"
     >
-    
+
     <title>{{ $title ?? config('app.name', 'Laravel') }}</title>
-    
+
     <meta
         name="description"
         content="{{ $description ?? '' }}"
     />
-    
+
     <meta
         name="Keywords"
         content="{{ $keywords ?? '' }}"
     >
-    
+
     <x-favicon />
-    
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -49,12 +49,12 @@
     x-on:open-modal.window="document.getElementById('body').classList.add('overflow-hidden')"
     x-on:close-modal.window="document.getElementById('body').classList.remove('overflow-hidden')"
 >
-    
+
     <livewire:verify-age />
-    
+
     <div class="fixed right-0 bottom-0 z-50 m-6 bg-white bg-opacity-60 rounded-full shadow-xl hover:bg-opacity-100 dark:bg-slate-900"
     >
-        <a href="https://wa.me/+27693529522">
+        <a href="https://wa.me/+2765444843">
             <svg
                 class="w-16"
                 viewBox="0 0 360 362"
@@ -70,17 +70,17 @@
             </svg>
         </a>
     </div>
-    
+
     <livewire:shared.product-filter />
-    
+
     <x-flash-notification />
-    
+
     <livewire:shared.navigation />
-    
+
     <div class="lg:pt-20">
         {{ $slot }}
     </div>
-    
+
     <livewire:shared.footer />
 
 </body>

@@ -1,7 +1,7 @@
 <x-base-layout
-    title="{{ config('app.name') }} - South Africa's Premium Vape Distro"
-    description="Vape Crew is one of the leading direct importers and distributors of vape related products in South Africa"
-    keywords="Vape Distro, Nasty, OKK Cross, Uwell"
+    title="{{ config('app.name') }} - Unleash the power of vaping"
+    description="Puff Daddy is an importer and distributor of vaping products"
+    keywords="Vape Distro, Nasty,Oxbar"
 >
 
     <x-header-banners />

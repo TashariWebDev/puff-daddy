@@ -82,7 +82,7 @@ new class extends Component {
 
     <form
         wire:submit="updateProfileInformation"
-        class="p-6 mt-6 space-y-6 bg-white rounded-lg"
+        class="mt-6 space-y-6 bg-white rounded-lg"
     >
         <div>
             <x-input-label

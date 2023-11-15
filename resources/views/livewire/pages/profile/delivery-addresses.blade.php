@@ -61,19 +61,18 @@ new class extends Component {
 }; ?>
 
 <section>
-
+    
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             Delivery Address.
         </h2>
-
+        
         <p class="mt-1 text-sm text-gray-600">
             Update your delivery address.
         </p>
     </header>
-
+    
     <form wire:submit.prevent="updateAddress"
-          class="p-6 mt-6 space-y-6 bg-white rounded-lg"
     >
         <div class="py-2">
             <label for="line_one">
@@ -94,7 +93,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-
+        
         <div class="py-2">
             <label for="line_two">Apartment/Building & Unit No. (optional)</label>
             <div class="mt-1">
@@ -112,7 +111,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-
+        
         <div class="py-2">
             <label for="suburb">
                 Suburb
@@ -132,7 +131,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-
+        
         <div class="py-2">
             <label for="city">
                 City
@@ -152,7 +151,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-
+        
         <div class="py-2">
             <label for="province">Province</label>
             <div class="mt-1 w-full">
@@ -160,7 +159,7 @@ new class extends Component {
                 <select
                     id="province"
                     name="province"
-                    class="w-full text-sm bg-white rounded-md border focus:ring-1 focus:ring-teal-400 text-slate-800 placeholder-slate-300"
+                    class="w-64 text-sm bg-white rounded-md border focus:ring-1 focus:ring-teal-400 text-slate-800 placeholder-slate-300"
                     wire:model.defer="province"
                     wire:change.debounce.1500ms="updateAddress"
                 >
@@ -181,7 +180,7 @@ new class extends Component {
             </div>
             @enderror
         </div>
-
+        
         <div class="py-2">
             <label for="postal_code">
                 Postal code

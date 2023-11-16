@@ -177,13 +177,6 @@ class Product extends Model
 
     public function scopeWithFilters($query, $search = '', $brand = '', $category = '')
     {
-        if (
-            ! $category &&
-            ! $brand &&
-            ! $search
-        ) {
-            return $query->inRandomOrder('2');
-        }
 
         return $query->when($search,
             fn ($query) => $query->search($search))

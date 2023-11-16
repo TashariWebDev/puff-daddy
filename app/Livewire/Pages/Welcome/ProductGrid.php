@@ -78,13 +78,13 @@ class ProductGrid extends Component
     }
 
     #[On('update-brand-filter')]
-    public function brandFilter($brand)
+    public function brandFilter($brand): void
     {
         $this->brandQuery = $brand;
     }
 
     #[On('update-category-filter')]
-    public function categoryFilter($category)
+    public function categoryFilter($category): void
     {
         $this->categoryQuery = $category;
     }
@@ -107,13 +107,14 @@ class ProductGrid extends Component
                 $this->brandQuery,
                 $this->categoryQuery
             )
-            ->when($this->onlyInStock, function ($query) {
-                $query->having('stocks_sum_qty', '>', 0);
-            })
             ->orderBy('brand')
             ->orderBy('product_collection_id')
             ->orderBy('category')
+            ->orderBy('retail_price')
             ->orderBy('name')
+            ->when($this->onlyInStock, function ($query) {
+                $query->having('stocks_sum_qty', '>', 0);
+            })
             ->paginate(18);
 
     }

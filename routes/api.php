@@ -17,3 +17,23 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/offline', function (Request $request) {
+    if ($request->referrer === config('app.admin_url')) {
+        \Illuminate\Support\Facades\Artisan::call('down');
+    }
+});
+
+Route::get('/online', function (Request $request) {
+    if ($request->referrer === config('app.admin_url')) {
+        \Illuminate\Support\Facades\Artisan::call('up');
+    }
+});
+
+Route::get('/check-maintenance', function () {
+    if (app()->isDownForMaintenance()) {
+        return response([], '503');
+    }
+
+    return response([], '200');
+});

@@ -110,6 +110,10 @@ class ProductGrid extends Component
             ->when($this->onlyInStock, function ($query) {
                 $query->having('stocks_sum_qty', '>', 0);
             })
+            ->orderBy('brand')
+            ->orderBy('product_collection_id')
+            ->orderBy('category')
+            ->orderBy('name')
             ->paginate(18);
 
     }

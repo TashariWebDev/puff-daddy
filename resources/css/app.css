@@ -19,5 +19,5 @@ label {
 }
 
 input[type=text], input[type=email], input[type=password], select, textarea {
-    @apply rounded-md outline-none border-gray-200 focus:border-none focus:outline-none focus:ring-teal-400 focus:shadow w-64;
+    @apply rounded-md outline-none border-gray-200 focus:border-none focus:outline-none focus:ring-teal-400 focus:shadow;
 }

@@ -1,9 +1,9 @@
 <div>
     <form
         wire:submit="sendMessage"
-        class="mt-6 space-y-6"
+        class="mt-6 space-y-6 w-full"
     >
-        <div>
+        <div class="w-full">
             <x-input-label
                 for="name"
                 :value="__('Name')"
@@ -64,7 +64,7 @@
             />
         </div>
 
-        <div>
+        <div class="w-full">
             <x-input-label
                 for="company"
                 :value="__('Company (optional)')"

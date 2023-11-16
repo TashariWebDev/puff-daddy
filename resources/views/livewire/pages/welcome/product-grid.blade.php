@@ -4,7 +4,7 @@
     <div class="flex z-30 justify-center items-center py-6 px-1 bg-black lg:px-8">
 
         <div class="flex px-2 mt-1 w-full rounded-md shadow-sm md:w-full">
-            <div class="flex relative flex-grow items-stretch focus-within:z-10">
+            <div class="flex relative flex-grow items-stretch w-full focus-within:z-10">
                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <x-icons.search class="w-5 h-5" />
                 </div>
@@ -14,7 +14,7 @@
                 ></label>
                 <input
                     id="search"
-                    type="text"
+                    type="search"
                     autocomplete="off"
                     wire:model.live="searchQuery"
                     @class([

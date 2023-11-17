@@ -1,16 +1,16 @@
 @php use App\Models\SystemSetting; @endphp
 <x-base-layout>
-
+    
     @php
-        $company = App\Models\SystemSetting::first();
+        $company = App\Models\SystemSetting::first() ?? new SystemSetting();
     @endphp
-
+    
     <div class="p-2 max-w-none lg:p-20 prose prose-teal prose-sm lg:prose-xl">
         <div class="grid grid-cols-1 gap-4 mx-auto lg:grid-cols-2">
             <div class="p-6 bg-white rounded-lg border">
                 <livewire:pages.contact.form />
             </div>
-
+            
             <div class="w-full">
                 <div class="px-4 border-b border-gray-900">
                     <h1 class="text-teal-400">Contact us</h1>
@@ -36,7 +36,7 @@
                         </svg>
                     </div>
                 </div>
-
+                
                 <div class="overflow-hidden relative p-4 mt-4 bg-gradient-to-br from-black via-black to-teal-500 rounded-lg shadow">
                     <div>
                         <h4 class="text-white">Email</h4>

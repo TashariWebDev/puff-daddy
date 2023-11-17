@@ -42,7 +42,7 @@
             </p>
             <h3>Company information</h3>
             <p>
-                This website is run by {{ $company->company_name }} Ltd based in South Africa trading as
+                This website is run by {{ $company->company_name }} based in South Africa trading as
                 {{ config('app.name') }} and with registration number {{ $company->company_registration_number }}.
             </p>
             <h3>Contact details</h3>

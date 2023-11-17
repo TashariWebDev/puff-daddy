@@ -1,18 +1,19 @@
+@php use App\Models\SystemSetting; @endphp
 <x-base-layout>
     @php
-        use App\Models\SystemSetting; $company  = App\Models\SystemSetting::first() ?? new SystemSetting();
+        $company  = App\Models\SystemSetting::first() ?? new SystemSetting();
     @endphp
     <div class="p-2 max-w-none lg:p-20 prose prose-teal prose-sm lg:prose-xl">
-        
+
         <article class="break-keep">
             <h1 class="text-teal-400">Terms and conditions</h1>
             <h3>Detailed description of goods and/or services</h3>
-            
+
             <p>
                 {{ config('app.name') }}
                 is a business in the Vape industry that distributes and sells all Vape related products
             </p>
-            
+
             <h3>Merchant Outlet country and transaction currency</h3>
             <p>
                 The merchant outlet country at the time of presenting payment options to the
@@ -52,7 +53,7 @@
             </address>
             <p>Telephone: {{ $company->phone }}</p>
             <p>email: {{ $company->email }}</p>
-            
+
             <h3>Customer accounts</h3>
             <p>
                 When you create an account with us, you must provide us information that is accurate, complete, and
@@ -143,16 +144,16 @@
                 by
                 the revised terms. If you do not agree to the new terms, please stop using the Service.
             </p>
-            
+
             <p>
                 Please read these Terms and Conditions (“Terms”, “Terms and Conditions”) carefully before using the
                 {{ config('app.url') }} website (the “Service”) operated by {{ config('app.name') }} (“us”, “we”, or
                 “our”). <br>
-                
+
                 Your access to and use of the Service is conditioned on your acceptance of and compliance with these
                 Terms.
                 These Terms apply to all visitors, users and others who access or use the Service. <br>
-                
+
                 By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of
                 the
                 terms then you may not access the Service.

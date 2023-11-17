@@ -1,6 +1,6 @@
 <x-base-layout>
     @php
-        $company  = App\Models\SystemSetting::first();
+        use App\Models\SystemSetting; $company  = App\Models\SystemSetting::first() ?? new SystemSetting();
     @endphp
 
     <div class="p-2 max-w-none lg:p-20 prose prose-teal prose-sm lg:prose-xl">

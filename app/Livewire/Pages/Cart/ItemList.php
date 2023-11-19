@@ -58,6 +58,7 @@ class ItemList extends Component
         $this->order = Order::where([
             'customer_id' => auth()->id(),
             'status' => null,
+            'processed_by' => null,
         ])
             ->withSum('items', 'qty')
             ->with('items.product')

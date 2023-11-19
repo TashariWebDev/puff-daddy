@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Jobs\CreateTransactionDocumentsJob;
+use App\Mail\PaymentReceiptMail;
+use App\Mail\PaymentReceivedMail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Mail;
 
 class Customer extends Authenticatable
 {
@@ -134,7 +137,21 @@ class Customer extends Authenticatable
             ]
         );
 
-        CreateTransactionDocumentsJob::dispatch($transaction->id);
+        if ($transaction->wasRecentlyCreated) {
+
+            Mail::to(config('mail.from.address'))->later(10,
+                new PaymentReceivedMail(
+                    $order, $transaction, $createdBy
+                )
+            );
+
+            Mail::to($order->customer)->later(10,
+                new PaymentReceiptMail(
+                    $order, $transaction, $createdBy
+                )
+            );
+
+        }
 
         return $transaction;
     }

@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Traits;
 
-use App\Mail\OrderConfirmed;
-use App\Mail\OrderReceived;
+use App\Mail\OrderConfirmedMail;
+use App\Mail\OrderReceivedMail;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Mail;
 
@@ -45,13 +45,18 @@ trait WithBilling
                 'ozow'
             );
         }
+
     }
 
     public function sendOrderEmails(): void
     {
-        Mail::to(auth()->user()->email)->queue(new OrderConfirmed(auth()->id()));
+        Mail::to(auth()->user()->email)->queue(new OrderConfirmedMail(auth()->user()));
 
-        Mail::to(config('mail.from.address'))->queue(new OrderReceived(auth()->id()));
+        Mail::to(config('mail.from.address'))
+            ->queue(new OrderReceivedMail(
+                auth()->user(),
+                $this->order)
+            );
     }
 
     public function createOrderPayment($order, $reference, $createdBy): void
@@ -78,6 +83,10 @@ trait WithBilling
             'status' => 'received',
             'created_at' => now(),
         ]);
+
+        $order->items()->touch('created_at');
+
+        $this->sendOrderEmails();
 
     }
 }

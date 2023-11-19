@@ -88,6 +88,7 @@ class Checkout extends Component
         return Order::where([
             'customer_id' => auth()->id(),
             'status' => null,
+            'processed_by' => null,
         ])
             ->withSum('items', 'qty')
             ->with('items.product')

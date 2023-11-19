@@ -21,7 +21,10 @@ class PaymentConfirmation extends Component
 
     public function getOrderProperty(): Model|Order|Builder|_IH_Order_QB|null
     {
-        return auth()->user()->orders()->latest()->where('status', '=', null)->first();
+        return auth()->user()->orders()->latest()
+            ->where('status', '=', null)
+            ->where('processed_by', '=', null)
+            ->first();
     }
 
     public function mount()
@@ -39,7 +42,11 @@ class PaymentConfirmation extends Component
             session()->forget('paymentId');
 
             $this->success = true;
+
+            $this->sendOrderEmails();
         }
+
+        return false;
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application

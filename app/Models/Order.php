@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Browsershot\Browsershot;
 use Spatie\Browsershot\Exceptions\CouldNotTakeBrowsershot;
 
@@ -91,6 +92,7 @@ class Order extends Model
             return self::firstOrCreate([
                 'customer_id' => $customer->id,
                 'status' => null,
+                'processed_by' => null,
             ]);
         }
 
@@ -213,15 +215,9 @@ class Order extends Model
             ->setScreenshotType('pdf', 60)
             ->save($url);
 
-        //        return Storage::disk('public')
-        //            ->download('documents/'.$this->number.'.pdf');
-        //        //        if (Storage::disk('public')->exists("documents/$this->number.pdf")) {
-        //        //            return response()->download(public_path('storage/documents/'.$this->number.'.pdf'));
-        //        //
-        //        //        }
+        return Storage::disk('public')
+            ->download('documents/'.$this->number.'.pdf');
 
-        //        return Storage::download("documents/$this->number.pdf");
-        //        return ("/storage/documents/$this->number.pdf");
     }
 
     public function scopeSearch($query, $terms): void

@@ -72,6 +72,12 @@ trait WithBilling
             'created_at' => now(),
         ]);
 
+        foreach ($order->items as $item) {
+            $item->update([
+                'created_at' => now(),
+            ]);
+        }
+
     }
 
     public function createUnpaidOrder($order): void
@@ -84,7 +90,11 @@ trait WithBilling
             'created_at' => now(),
         ]);
 
-        $order->items()->touch('created_at');
+        foreach ($order->items as $item) {
+            $item->update([
+                'created_at' => now(),
+            ]);
+        }
 
         $this->sendOrderEmails();
 

@@ -11,6 +11,6 @@ class ProductCollection extends Model
 
     public function products(): hasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)->availableToCustomerType()->onlyActive();
     }
 }

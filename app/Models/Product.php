@@ -142,6 +142,20 @@ class Product extends Model
         return false;
     }
 
+    public function scopeAvailableToCustomerType($query)
+    {
+        if (auth()->check() && auth()->user()->is_wholesale) {
+            return $query->where('available_to_wholesale', true);
+        }
+
+        if (auth()->check() && ! auth()->user()->is_wholesale) {
+            return $query->where('available_to_retail', true);
+        }
+
+        return $query;
+
+    }
+
     public function scopeOnlyActive($query)
     {
         return $query->where('is_active', true);

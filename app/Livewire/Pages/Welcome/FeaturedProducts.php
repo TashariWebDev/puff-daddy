@@ -39,6 +39,7 @@ class FeaturedProducts extends Component
             ->pluck('product_id');
 
         return Product::query()
+            ->availableToCustomerType()
             ->onlyActive()
             ->withStockCount()
             ->with('features')

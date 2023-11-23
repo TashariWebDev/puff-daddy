@@ -100,6 +100,7 @@ class ProductGrid extends Component
     {
         return Product::query()
             ->with('features')
+            ->availableToCustomerType()
             ->onlyActive()
             ->withStockCount()
             ->withFilters(

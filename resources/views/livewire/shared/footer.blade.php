@@ -26,10 +26,10 @@
                                     <div class="flex flex-col justify-start items-start p-4 mb-12 h-auto rounded-lg lg:mb-0 min-w-[450px] max-w-[450px] bg-teal-900/60 backdrop-blur-2xl">
                                         <div class="flex justify-center items-center">
                                             <div class="flex overflow-hidden justify-center items-center mr-4 w-12 h-12 bg-black rounded-full ring ring-teal-200">
-                                                <p class="text-yellow-300">{{ $review->initial }}</p>
+                                                <p class="text-yellow-300 uppercase">{{ $review->initials }}</p>
                                             </div>
                                             <div class="flex flex-col justify-center items-start">
-                                                <h4 class="font-bold text-slate-300">John Doe</h4>
+                                                <h4 class="font-bold capitalize text-slate-300">{{ $review->name }}</h4>
                                                 <div class="flex space-x-1">
 
                                                     @for($count = 0;$count < $review->rating;$count++)

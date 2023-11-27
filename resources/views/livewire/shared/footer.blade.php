@@ -1,5 +1,5 @@
 <div>
-    
+
     <div
         class="grid grid-cols-1 py-2 bg-black lg:grid-cols-3 lg:px-16"
         id="logo-grid"
@@ -10,18 +10,14 @@
                  class="h-8 lg:w-full drop-shadow dark:mix-blend-screen"
             >
         </div>
-        
+
         <div class="flex justify-center items-center py-2 px-6 w-full lg:py-1">
             <img src="{{ asset('design/Ozow-Logo-Colour_OnBlack.png') }}"
                  alt="ozow gateway logo"
-                 class="h-8 dark:hidden drop-shadow"
-            >
-            <img src="{{ asset('design/logos/Ozow-Logo-Colour_OnBlack.png') }}"
-                 alt="ozow gateway logo"
-                 class="hidden h-8 dark:block drop-shadow"
+                 class="h-8 drop-shadow"
             >
         </div>
-        
+
         <div class="flex justify-center items-center py-2 w-full lg:py-1 lg:px-6 lg:rounded-r-full">
             <img src="{{ asset('design/courier-guy.svg') }}"
                  alt="Yoco"
@@ -29,7 +25,7 @@
             >
         </div>
     </div>
-    
+
     <div class="px-4 w-full bg-black lg:py-10">
         <div class="grid grid-cols-1 lg:grid-cols-4">
             <div class="pb-2 lg:col-span-2">
@@ -72,7 +68,7 @@
                             </div>
                         </a>
                     </div>
-                    
+
                     <div class="lg:px-4">
                         <a href="https://wa.me/+2765444843">
                             <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-600 max-w-[280px]">
@@ -91,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="lg:px-4">
                 <h2 class="font-semibold text-white">Featured Brands</h2>
                 <div class="py-2">
@@ -107,7 +103,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="flex-col space-y-3 lg:px-4">
                 <h2 class="font-semibold text-white">Our Company</h2>
                 <div>
@@ -148,8 +144,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <div class="flex justify-between items-center p-2 w-screen bg-black">
         <div class="pl-4 text-center lg:text-left">
             <p class="text-sm font-bold text-white uppercase whitespace-nowrap">
@@ -164,7 +160,7 @@
                 class="text-sm text-white fill-white"
                 id="developer_link_on_footer"
             >
-                
+
                 <svg
                     class="hidden h-4 dark:block"
                     width="100%"
@@ -246,7 +242,7 @@
         </g>
     </g>
 </svg>
-                
+
                 <svg
                     class="block h-4 dark:hidden"
                     width="100%"
@@ -326,8 +322,8 @@
         </g>
     </g>
 </svg>
-            
-            
+
+
             </a>
         </div>
     </div>

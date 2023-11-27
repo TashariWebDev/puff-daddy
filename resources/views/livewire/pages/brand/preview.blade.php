@@ -1,7 +1,7 @@
 <div>
 
     <div class="w-screen">
-        <img src="{{ config('app.admin_url').'/'.$page->header_image }}"
+        <img src="{{ config('app.admin_url').'/storage/'.$page->header_image }}"
              alt=""
         >
     </div>
@@ -40,7 +40,7 @@
     @endif
 
     <div class="w-screen">
-        <img src="{{ config('app.admin_url').'/'.$page->footer_image }}"
+        <img src="{{ config('app.admin_url').'/storage/'.$page->footer_image }}"
              alt=""
         >
     </div>

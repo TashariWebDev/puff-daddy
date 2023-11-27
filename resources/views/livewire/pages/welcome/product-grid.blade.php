@@ -75,7 +75,7 @@
     
     {{--brands filter--}}
     
-    <div class="overflow-hidden py-6 mx-auto bg-gray-50 sm:px-6 lg:px-8">
+    <div class="overflow-hidden py-6 mx-auto bg-gray-50 sm:px-6 lg:px-8 no-scrollbar">
         <div
             class="flex overflow-x-auto overflow-y-hidden items-center px-2 pb-8 ml-0 w-full rounded-lg snap-x snap-mandatory no-scrollbar"
         >

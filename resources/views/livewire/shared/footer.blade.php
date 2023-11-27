@@ -42,15 +42,15 @@
                 <div class="flex-col mt-4 space-y-3">
                     <div class="lg:px-4">
                         <a href="https://instagram.com/puffdaddy_distro?igshid=YmMyMTA2M2Y=">
-                            <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-400 max-w-[280px]">
+                            <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-600 max-w-[280px]">
                                 <div>
                                     <p class="font-semibold text-white">Follow us on Instagram</p>
                                 </div>
                                 <div>
                                     <img
-                                        src="{{ asset('design/instagram.png') }}"
+                                        src="{{ asset('design/instagram.svg') }}"
                                         alt=""
-                                        class="p-0.5 h-8 bg-white rounded"
+                                        class="p-0.5 h-8 bg-black rounded"
                                     >
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="lg:px-4">
                         <a href="https://www.tiktok.com/@puffdaddy_distro">
-                            <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-400 max-w-[280px]">
+                            <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-600 max-w-[280px]">
                                 <div>
                                     <p class="font-semibold text-white">Find us on TikTok</p>
                                 </div>
@@ -66,7 +66,24 @@
                                     <img
                                         src="{{ asset('design/tiktok.png') }}"
                                         alt=""
-                                        class="h-8 rounded"
+                                        class="p-0.5 h-8 bg-black rounded"
+                                    >
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="lg:px-4">
+                        <a href="https://www.tiktok.com/@puffdaddy_distro">
+                            <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-600 max-w-[280px]">
+                                <div>
+                                    <p class="font-semibold text-white">Chat on whatsapp</p>
+                                </div>
+                                <div>
+                                    <img
+                                        src="{{ asset('design/whatsapp.svg') }}"
+                                        alt=""
+                                        class="p-0.5 h-8 bg-black rounded"
                                     >
                                 </div>
                             </div>

@@ -74,7 +74,7 @@
                     </div>
                     
                     <div class="lg:px-4">
-                        <a href="https://www.tiktok.com/@puffdaddy_distro">
+                        <a href="https://wa.me/+2765444843">
                             <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-600 max-w-[280px]">
                                 <div>
                                     <p class="font-semibold text-white">Chat on whatsapp</p>

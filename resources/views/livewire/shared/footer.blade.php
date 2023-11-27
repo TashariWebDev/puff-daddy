@@ -1,5 +1,57 @@
 <div>
 
+    @if($reviews->count())
+        <section class="flex overflow-x-hidden justify-center items-center py-20 bg-center bg-cover min-w-screen max-w-screen"
+                 style="background-image: url({{ asset('design/3d-abstract-flow-background.jpg') }})"
+        >
+            <div>
+                <div class="flex flex-col items-center mx-auto">
+                    <p class="flex relative justify-center items-center w-full text-lg font-bold tracking-wider uppercase text-slate-200"
+                    >Don't just take our word for it</p>
+
+
+                    <h2 class="flex relative justify-center w-full max-w-3xl font-bold text-teal-400 lg:text-5xl">
+                        See what others are saying
+                    </h2>
+                    <div class="block mt-6 w-full max-w-lg h-0.5 bg-teal-100 rounded-full"
+                         data-primary="purple-600"
+                    ></div>
+
+                    <div class="overflow-x-scroll mt-12 mb-4 w-full no-scrollbar animate-ticker"
+
+                    >
+                        <div class="flex justify-center items-center space-x-6">
+                            @foreach($reviews as $review)
+                                @for($i = 0; $i < 30;$i++)
+                                    <div class="flex flex-col justify-start items-start p-4 mb-12 h-auto rounded-lg lg:mb-0 min-w-[450px] max-w-[450px] bg-teal-900/60 backdrop-blur-2xl">
+                                        <div class="flex justify-center items-center">
+                                            <div class="flex overflow-hidden justify-center items-center mr-4 w-12 h-12 bg-black rounded-full ring ring-teal-200">
+                                                <p class="text-yellow-300">{{ $review->initial }}</p>
+                                            </div>
+                                            <div class="flex flex-col justify-center items-start">
+                                                <h4 class="font-bold text-slate-300">John Doe</h4>
+                                                <div class="flex space-x-1">
+
+                                                    @for($count = 0;$count < $review->rating;$count++)
+                                                        <p class="text-yellow-300">&star;</p>
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <blockquote class="mt-8 text-lg text-gray-300">
+                                            {!! $review->body !!}
+                                        </blockquote>
+                                    </div>
+                                @endfor
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+
     <div
         class="grid grid-cols-1 py-2 bg-black lg:grid-cols-3 lg:px-16"
         id="logo-grid"

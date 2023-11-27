@@ -3,6 +3,7 @@
 namespace App\Livewire\Shared;
 
 use App\Models\Brand;
+use App\Models\CustomerReview;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,6 +15,7 @@ class Footer extends Component
     {
         return view('livewire.shared.footer', [
             'brands' => Brand::withWhereHas('page')->orderBy('name')->get(),
+            'reviews' => CustomerReview::all(),
         ]);
     }
 }

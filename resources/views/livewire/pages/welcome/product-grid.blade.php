@@ -1,86 +1,86 @@
 <div class="z-30 bg-gray-50">
-    
+
     {{-- search and filters --}}
-    <div class="flex z-30 justify-center items-center py-6 px-1 bg-black lg:px-8">
-        
-        <div class="flex px-2 mt-1 w-full rounded-md shadow-sm md:w-full">
-            <div class="flex relative flex-grow items-stretch w-full focus-within:z-10">
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <x-icons.search class="w-5 h-5" />
+    <div>
+        <div class="flex z-30 justify-center items-center py-6 px-1 bg-black lg:px-8">
+
+            <div class="flex px-2 mt-1 w-full rounded-md shadow-sm md:w-full">
+                <div class="flex relative flex-grow items-stretch w-full focus-within:z-10">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <x-icons.search class="w-5 h-5" />
+                    </div>
+                    <label
+                        class="hidden"
+                        for="search"
+                    ></label>
+                    <input
+                        id="search"
+                        type="search"
+                        autocomplete="off"
+                        wire:model.live="searchQuery"
+                        @class([
+                            'focus:ring-yellow-500 focus:border-yellow-500 block w-full rounded-l-md pl-10 sm:text-sm border-gray-300 rounded-r-none text-lg',
+                            'border-yellow-500' => $searchQuery,
+                        ])
+                        placeholder="search by brand, flavour or category"
+                    >
                 </div>
-                <label
-                    class="hidden"
-                    for="search"
-                ></label>
-                <input
-                    id="search"
-                    type="search"
-                    autocomplete="off"
-                    wire:model.live="searchQuery"
-                    @class([
-                        'focus:ring-yellow-500 focus:border-yellow-500 block w-full rounded-l-md pl-10 sm:text-sm border-gray-300 rounded-r-none text-lg',
-                        'border-yellow-500' => $searchQuery,
-                    ])
-                    placeholder="search by brand, flavour or category"
+
+                <button
+                    class="inline-flex relative items-center py-2 px-4 -ml-px space-x-2 text-sm font-medium text-gray-700 bg-gray-50 border border-gray-300 hover:bg-gray-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                    type="button"
+                    aria-label="Clear search query"
+                    wire:click="resetFilters"
+                    title="Reset Search and filters"
                 >
+                    <svg
+                        class="w-5 h-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                </button>
+
             </div>
-            
-            <button
-                class="inline-flex relative items-center py-2 px-4 -ml-px space-x-2 text-sm font-medium text-gray-700 bg-gray-50 border border-gray-300 hover:bg-gray-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
-                type="button"
-                aria-label="Clear search query"
-                wire:click="resetFilters"
-                title="Reset Search and filters"
+
+        </div>
+        {{--Category Filter--}}
+        <div class="flex overflow-x-scroll items-center px-2 pb-3 space-x-6 w-full bg-black lg:px-8 no-scrollbar">
+            <button class="px-3 font-semibold text-white bg-gradient-to-b from-teal-400 to-teal-600 rounded hover:bg-teal-600 hover:from-teal-500 hover:to-teal-600 focus:rounded-sm y-2 focus:outline focus:outline-2 focus:outline-teal-500"
+                    wire:click="resetFilters"
             >
-                <svg
-                    class="w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                    />
-                </svg>
+                Clear Filters
             </button>
-            
-            <button
-                class="inline-flex relative items-center py-2 px-4 -ml-px space-x-2 text-sm font-medium text-gray-700 bg-gray-50 rounded-r-md border border-gray-300 hover:bg-gray-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
-                type="button"
-                aria-label="Clear search query"
-                x-on:click="$dispatch('show-filters')"
-                title="Apply filters"
+            <button class="px-3 font-semibold text-white rounded hover:bg-teal-600 hover:from-teal-500 hover:to-teal-600 focus:rounded-sm y-2 focus:outline focus:outline-2 focus:outline-teal-500 @if($categoryQuery === '') bg-gradient-to-b from-teal-400 to-teal-600 @endif"
+                    wire:click="$set('categoryQuery', '')"
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
-                    />
-                </svg>
+                Show All
             </button>
-        
+            @foreach($categories as $category)
+                <button class="px-3 font-semibold text-white border border-teal-400  rounded hover:bg-teal-600 hover:from-teal-500 hover:to-teal-600 focus:rounded-sm y-2 focus:outline focus:outline-2 focus:outline-teal-500 @if($categoryQuery === $category) bg-gradient-to-b from-teal-400 to-teal-600 @endif"
+                        wire:click="$set('categoryQuery', '{{ $category }}')"
+                >
+                    {{ $category }}
+                </button>
+            @endforeach
         </div>
     </div>
-    
-    
+
+
     {{--brands filter--}}
-    
+
     <div class="overflow-hidden py-6 mx-auto bg-gray-50 sm:px-6 lg:px-8 no-scrollbar">
         <div
             class="flex overflow-x-auto overflow-y-hidden items-center px-2 pb-8 ml-0 w-full rounded-lg snap-x snap-mandatory no-scrollbar"
         >
             <div class="flex items-center space-x-4 lg:space-x-6 animate-ticker">
-                @for($i = 0; $i < 10; $i++)
+                @for($i = 0; $i < 20; $i++)
                     @foreach($brands as $brand)
                         <div class="flex-col py-1 rounded-lg">
                             <button
@@ -97,7 +97,7 @@
                                     <p class="font-semibold text-left text-white capitalize lg:text-md">{{$brand->name}}</p>
                                 </div>
                             </button>
-                            
+
                             @if($brand->page)
                                 <div class="mt-4">
                                     <a href="{{ route('preview',$brand->page->id) }}"
@@ -117,18 +117,18 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <div
         class="overflow-hidden pb-6 mx-auto sm:px-6 lg:px-8"
     >
-        
+
         <div class="overflow-hidden py-4 px-3 mx-auto md:px-0">
             {{ $this->filteredProducts->links() }}
         </div>
-        
+
         <h2 class="sr-only">Products</h2>
-        
+
         <div class="grid grid-cols-2 gap-x-2 gap-y-4 -mx-px sm:mx-0 md:grid-cols-4 lg:grid-cols-6 lg:gap-4 lg:gap-y-6">
             @forelse($this->filteredProducts as $product)
                 <x-products.card :product="$product" />
@@ -139,7 +139,7 @@
                         <p class="text-lg text-slate-500">
                             Looks like we have no results found based on your filter or search!
                         </p>
-                        
+
                         <div class="mt-6">
                             <button
                                 class="px-1 bg-gray-200 rounded-lg border shadow hover:bg-gray-100"
@@ -168,26 +168,26 @@
                 </div>
             @endforelse
         </div>
-        
+
         <div class="overflow-hidden py-4 px-3 mx-auto md:px-0">
             {{ $this->filteredProducts->links() }}
         </div>
-    
+
     </div>
-    
+
     @if($selectedProduct)
         <x-modal
             title="Set stock alert"
             name="stock-alerts"
         >
-            
+
             <div class="my-6">
                 <p class="font-bold text-gray-600">
                     We will email you as soon as {{ $selectedProduct->brand }} {{ $selectedProduct->name }} is
                     re-stocked
                 </p>
             </div>
-            
+
             <form wire:submit="saveStockAlert">
                 <div class="mt-4">
                     <label
@@ -207,7 +207,7 @@
                 </div>
                 <div class="mt-4">
                     <x-button class="flex justify-between items-center w-full button-green">
-                        
+
                         <p class="font-semibold whitespace-nowrap truncate">
                             NOTIFY ME
                         </p>
@@ -217,7 +217,7 @@
             </form>
         </x-modal>
     @endif
-    
+
     {{--  @if($selectedProduct)--}}
     {{--    <x-modal--}}
     {{--        title="Add to cart"--}}

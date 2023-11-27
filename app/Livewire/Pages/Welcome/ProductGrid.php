@@ -44,7 +44,7 @@ class ProductGrid extends Component
 
     public Collection $brands;
 
-    public Collection $categories;
+    public array $categories;
 
     public int $count = 0;
 
@@ -75,6 +75,12 @@ class ProductGrid extends Component
         $this->brands = Brand::with('page')
             ->orderBy('name')
             ->get();
+
+        $this->categories = Product::where('is_active', true)
+            ->orderBy('category')
+            ->pluck('category')
+            ->unique()
+            ->toArray();
     }
 
     #[On('update-brand-filter')]

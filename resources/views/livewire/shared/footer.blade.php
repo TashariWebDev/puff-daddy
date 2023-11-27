@@ -379,4 +379,10 @@
             </a>
         </div>
     </div>
+
+    <div class="py-4 mx-auto w-screen text-center bg-black">
+        <p class="font-light tracking-wider text-slate-300 text-[11px]">
+            Warning: Our products may contain nicotine. Nicotine is an addictive chemical. Not for sale to under 18's
+        </p>
+    </div>
 </div>

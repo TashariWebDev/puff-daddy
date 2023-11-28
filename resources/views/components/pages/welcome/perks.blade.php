@@ -44,7 +44,7 @@
                     </svg>
                     <div class="flex flex-col-reverse flex-auto ml-4">
                         <h3 class="font-medium text-white">Super Fast Delivery.</h3>
-                        <p class="text-teal-300">
+                        <p class="text-sm text-teal-300">
                             Orders shipped every morning.
                         </p>
                     </div>

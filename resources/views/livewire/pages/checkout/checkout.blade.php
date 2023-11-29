@@ -1,16 +1,16 @@
 <div class="container p-6 py-24 mx-auto">
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        
+
         <div>
             <div class="p-4 mb-4 bg-white rounded-lg border">
                 <div class="mb-4">
                     <h1 class="text-lg font-bold">Contact Details</h1>
                     <p class="text-sm text-gray-500">Please confirm contact details below.</p>
                 </div>
-                
+
                 <div>
                     <form wire:submit.prevent="updateUser">
-                        
+
                         <div class="py-2">
                             <label for="email-address">Email address</label>
                             <div class="pt-1">
@@ -28,7 +28,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="name">Full Name</label>
                             <div class="mt-1">
@@ -46,7 +46,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="phone">Phone</label>
                             <div class="mt-1">
@@ -64,7 +64,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="company">Business / Company Name (if delivery at work)</label>
                             <div class="mt-1">
@@ -82,7 +82,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="vat_number">Vat number</label>
                             <div class="mt-1">
@@ -104,13 +104,13 @@
                     </form>
                 </div>
             </div>
-            
+
             <div class="p-4 bg-white rounded-lg border">
                 <div class="mb-4">
                     <h1 class="text-lg font-bold">Delivery Address</h1>
                     <p class="text-sm text-gray-500">Please confirm your delivery address below.</p>
                 </div>
-                
+
                 <div>
                     <form wire:submit.prevent="updateAddress">
                         <div class="py-2">
@@ -132,7 +132,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="line_two">Apartment/Building & Unit No. (optional)</label>
                             <div class="mt-1">
@@ -150,7 +150,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="suburb">
                                 Suburb
@@ -170,7 +170,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="city">
                                 City
@@ -190,7 +190,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="province">Province</label>
                             <div class="mt-1 w-full">
@@ -219,7 +219,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <div class="py-2">
                             <label for="postal_code">
                                 Postal code
@@ -243,37 +243,37 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="p-4 bg-white border lg:rounded-lg">
-            
+
             <div class="py-2">
                 <p class="font-extrabold text-slate-900">Order Summary</p>
             </div>
-            
-            
+
+
             <dl class="py-6 space-y-6">
-                
-                
+
+
                 <div class="flex justify-between items-center pb-3 border-b">
                     <dt class="text-sm font-semibold">Subtotal</dt>
                     <dd class="text-sm font-medium text-slate-900">
                         R {{ number_format($this->order->getSubTotal(),2) }}</dd>
                 </div>
-                
+
                 @if(!$this->address)
                     <div class="p-3 w-full text-pink-800 bg-pink-100 rounded ring-1 ring-pink-800">
                         <p>Please update your address to continue</p>
                     </div>
                 @endif
-                
+
                 @if($this->address)
-                    
+
                     <div class="pt-6 pb-2">
                         <p class="font-extrabold text-slate-900">Shipping options</p>
                     </div>
-                    
+
                     @foreach($deliveryOptions as $deliveryOption)
-                        
+
                         <div class="flex justify-between items-baseline">
                             <dt class="capitalize">
                                 <label
@@ -295,8 +295,8 @@
                             </dd>
                         </div>
                     @endforeach
-                    
-                    
+
+
                     <div class="flex justify-between items-center py-6 border-y border-slate-200">
                         <dt class="text-base font-medium">Due today :</dt>
                         <dd class="text-base font-semibold text-slate-900">
@@ -305,8 +305,8 @@
                             </p>
                         </dd>
                     </div>
-                    
-                    
+
+
                     <div class="w-full">
                         <label for="note">Delivery instructions</label>
                         <div class="pt-1">
@@ -325,19 +325,19 @@
                         </div>
                         @enderror
                     </div>
-                
+
                 @endif
             </dl>
-            
+
             @if(!$this->address)
                 <div></div>
             @else
                 <div class="pt-6 pb-2">
-                    
+
                     <div class="pb-6">
                         <p class="font-extrabold text-slate-900">How would you like to pay?</p>
                     </div>
-                    
+
                     @if( auth()->user()->isWholesale())
                         <div class="items-baseline py-6 border-b lg:flex lg:justify-between">
                             <div>
@@ -348,7 +348,7 @@
                             <div class="flex justify-between items-baseline w-32 lg:justify-start">
                                 <button
                                     wire:click="placeOrder"
-                                    
+
                                     class="block py-3 mt-3 w-full h-full bg-gray-600 rounded-lg shadow lg:mt-0 button-green"
                                 >
                                     Place EFT order
@@ -356,7 +356,7 @@
                             </div>
                         </div>
                     @endif
-                    
+
                     <div class="py-6 border-b lg:flex lg:justify-between lg:items-start">
                         <div>
                             <p class="font-semibold whitespace-nowrap text-slate-800">
@@ -374,22 +374,23 @@
                                     class="object-cover p-1 mx-auto w-full h-full rounded-lg"
                                     wire:target="attemptPaymentWithYoco"
                                 >
-                            
+
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="py-6 border-b lg:flex lg:justify-between lg:items-start dark:border-slate-800">
                         <div>
                             <p class="font-semibold whitespace-nowrap text-slate-800">
                                 Pay with Ozow Instant EFT
                             </p>
                         </div>
-                        
+
                         <div class="flex justify-between items-baseline w-32 lg:justify-start">
                             <button id="yoco-checkout-button"
-                                    class="block mt-3 w-full h-full bg-gray-900 rounded-lg shadow lg:mt-0"
-                                    x-on:click="$refs.ozow.submit()"
+                                    disabled
+                                    class="block mt-3 w-full h-full bg-gray-900 rounded-lg shadow lg:mt-0 disabled:opacity-70 disabled:cursor-not-allowed"
+                                {{--                                    x-on:click="$refs.ozow.submit()"--}}
                             >
                                 <img src="{{ asset('design/Ozow-Logo-Colour_OnBlack.png') }}"
                                      alt=""
@@ -397,25 +398,25 @@
                                 >
                             </button>
                         </div>
-                        
-                        <div class="hidden">
-                            <form action="{{ config('services.ozow.liveUrl')}}"
-                                  method="POST"
-                                  class="hidden"
-                                  x-ref="ozow"
-                            >
-                                @csrf
-                                @foreach ($ozowPostData as $key => $value)
-                                    <input type="hidden"
-                                           name="{{$key}}"
-                                           value="{{$value}}"
-                                    >
-                                @endforeach
-                            </form>
-                        </div>
+
+                        {{--                        <div class="hidden">--}}
+                        {{--                            <form action="{{ config('services.ozow.liveUrl')}}"--}}
+                        {{--                                  method="POST"--}}
+                        {{--                                  class="hidden"--}}
+                        {{--                                  x-ref="ozow"--}}
+                        {{--                            >--}}
+                        {{--                                @csrf--}}
+                        {{--                                @foreach ($ozowPostData as $key => $value)--}}
+                        {{--                                    <input type="hidden"--}}
+                        {{--                                           name="{{$key}}"--}}
+                        {{--                                           value="{{$value}}"--}}
+                        {{--                                    >--}}
+                        {{--                                @endforeach--}}
+                        {{--                            </form>--}}
+                        {{--                        </div>--}}
                     </div>
-                    
-                    
+
+
                     <div class="items-baseline py-2 mt-12 lg:flex lg:justify-between">
                         <div>
                             <p class="font-semibold whitespace-nowrap text-slate-800">
@@ -429,10 +430,10 @@
                             &larr; Continue Shopping
                         </a>
                     </div>
-                
+
                 </div>
             @endif
         </div>
-    
+
     </div>
 </div>

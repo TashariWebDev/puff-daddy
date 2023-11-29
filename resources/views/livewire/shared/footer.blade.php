@@ -1,5 +1,5 @@
 <div>
-
+    
     @if($reviews->count())
         <section class="flex overflow-x-hidden justify-center items-center py-20 bg-center bg-cover min-w-screen max-w-screen"
                  style="background-image: url({{ asset('design/3d-abstract-flow-background.jpg') }})"
@@ -8,17 +8,17 @@
                 <div class="flex flex-col items-center mx-auto">
                     <p class="flex relative justify-center items-center w-full text-lg font-bold tracking-wider uppercase text-slate-200"
                     >Don't just take our word for it</p>
-
-
+                    
+                    
                     <h2 class="flex relative justify-center w-full max-w-3xl font-bold text-teal-400 lg:text-5xl">
                         See what others are saying
                     </h2>
                     <div class="block mt-6 w-full max-w-lg h-0.5 bg-teal-100 rounded-full"
                          data-primary="purple-600"
                     ></div>
-
+                    
                     <div class="overflow-x-scroll mt-12 mb-4 w-full no-scrollbar animate-ticker"
-
+                    
                     >
                         <div class="flex justify-center items-center space-x-6">
                             @foreach($reviews as $review)
@@ -31,7 +31,7 @@
                                             <div class="flex flex-col justify-center items-start">
                                                 <h4 class="font-bold capitalize text-slate-300">{{ $review->name }}</h4>
                                                 <div class="flex space-x-1">
-
+                                                    
                                                     @for($count = 0;$count < $review->rating;$count++)
                                                         <p class="text-yellow-300">&star;</p>
                                                     @endfor
@@ -50,8 +50,8 @@
             </div>
         </section>
     @endif
-
-
+    
+    
     <div
         class="grid grid-cols-1 py-2 bg-black lg:grid-cols-3 lg:px-16"
         id="logo-grid"
@@ -62,14 +62,14 @@
                  class="h-8 lg:w-full drop-shadow dark:mix-blend-screen"
             >
         </div>
-
+        
         <div class="flex justify-center items-center py-2 px-6 w-full lg:py-1">
             <img src="{{ asset('design/Ozow-Logo-Colour_OnBlack.png') }}"
                  alt="ozow gateway logo"
                  class="h-8 drop-shadow"
             >
         </div>
-
+        
         <div class="flex justify-center items-center py-2 w-full lg:py-1 lg:px-6 lg:rounded-r-full">
             <img src="{{ asset('design/courier-guy.svg') }}"
                  alt="Yoco"
@@ -77,7 +77,7 @@
             >
         </div>
     </div>
-
+    
     <div class="px-4 w-full bg-black lg:py-10">
         <div class="grid grid-cols-1 lg:grid-cols-4">
             <div class="pb-2 lg:col-span-2">
@@ -120,7 +120,7 @@
                             </div>
                         </a>
                     </div>
-
+                    
                     <div class="lg:px-4">
                         <a href="https://wa.me/+2765444843">
                             <div class="flex justify-between items-center p-1 rounded border border-teal-400 hover:bg-teal-600 max-w-[280px]">
@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="lg:px-4">
                 <h2 class="font-semibold text-white">Featured Brands</h2>
                 <div class="py-2">
@@ -155,7 +155,7 @@
                     </ul>
                 </div>
             </div>
-
+            
             <div class="flex-col space-y-3 lg:px-4">
                 <h2 class="font-semibold text-white">Our Company</h2>
                 <div>
@@ -181,6 +181,13 @@
                 </div>
                 <div>
                     <a
+                        href="{{ route('payments') }}"
+                        class="text-teal-500 hover:text-teal-600"
+                        wire:navigate
+                    >Payments</a>
+                </div>
+                <div>
+                    <a
                         href="{{ route('privacy') }}"
                         class="text-teal-500 hover:text-teal-600"
                         wire:navigate
@@ -196,8 +203,8 @@
             </div>
         </div>
     </div>
-
-
+    
+    
     <div class="flex justify-between items-center p-2 w-screen bg-black">
         <div class="pl-4 text-center lg:text-left">
             <p class="text-sm font-bold text-white uppercase whitespace-nowrap">
@@ -212,7 +219,7 @@
                 class="text-sm text-white fill-white"
                 id="developer_link_on_footer"
             >
-
+                
                 <svg
                     class="hidden h-4 dark:block"
                     width="100%"
@@ -294,7 +301,7 @@
         </g>
     </g>
 </svg>
-
+                
                 <svg
                     class="block h-4 dark:hidden"
                     width="100%"
@@ -374,12 +381,12 @@
         </g>
     </g>
 </svg>
-
-
+            
+            
             </a>
         </div>
     </div>
-
+    
     <div class="py-4 mx-auto w-screen text-center bg-black">
         <p class="font-light tracking-wider text-slate-300 text-[11px]">
             Warning: Our products may contain nicotine. Nicotine is an addictive chemical. Not for sale to under 18's

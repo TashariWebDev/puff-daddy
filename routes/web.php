@@ -11,6 +11,7 @@ Route::view('/contact', 'contact')->name('contact');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
 Route::view('/returns', 'returns')->name('returns');
+Route::view('/payments', 'payment-policy')->name('payments');
 Route::get('/brand/{page}', Preview::class)->name('preview');
 
 //Purchasing Pages ** Requires Authentication **

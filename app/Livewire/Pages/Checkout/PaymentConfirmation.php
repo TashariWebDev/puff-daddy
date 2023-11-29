@@ -4,12 +4,12 @@ namespace App\Livewire\Pages\Checkout;
 
 use App\Livewire\Traits\WithBilling;
 use App\Models\Order;
-use Hash;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 use LaravelIdea\Helper\App\Models\_IH_Order_QB;
 use Livewire\Component;
 
@@ -44,6 +44,13 @@ class PaymentConfirmation extends Component
             $this->success = true;
 
             $this->sendOrderEmails();
+        }
+
+        // Ozow
+        if (request()->has('Status') && request('Status') == 'Complete') {
+            $this->createOrderPayment($this->order, $this->order->number, 'OZOW');
+
+            $this->success = true;
         }
 
         return false;

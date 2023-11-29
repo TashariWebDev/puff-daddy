@@ -19,6 +19,15 @@ return [
         'key' => env('YOCO_KEY'),
     ],
 
+    'ozow' => [
+        'active' => env('OZOW_ACTIVE'),
+        'liveUrl' => env('OZOW_LIVE_URL'),
+        'siteCode' => env('OZOW_SITE_CODE'),
+        'privateKey' => env('OZOW_PRIVATE_KEY'),
+        'successUrl' => env('APP_URL').env('OZOW_SUCCESS_URL'),
+        'cancelUrl' => env('APP_URL').env('OZOW_CANCEL_URL'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

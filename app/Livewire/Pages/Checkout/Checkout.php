@@ -127,6 +127,8 @@ class Checkout extends Component
 
         $this->checkPriceChanges();
 
+        $this->ozowPostData = $this->attemptPaymentWithOzow();
+
     }
 
     public function updateNote(): void
@@ -287,6 +289,14 @@ class Checkout extends Component
         $this->createUnpaidOrder($this->order);
 
         return redirect('order-confirmation');
+    }
+
+    public function attemptPaymentWithOzow(): array
+    {
+        return $this->getPostDataFromOzow(
+            $this->order->getTotal(),
+            $this->order->number,
+        );
     }
 
     public function attemptPaymentWithYoco(): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application

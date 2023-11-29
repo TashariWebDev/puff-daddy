@@ -99,4 +99,41 @@ trait WithBilling
         $this->sendOrderEmails();
 
     }
+
+    //    Ozow Integration
+
+    public function getPostDataFromOzow(
+        $amount,
+        $reference
+    ): array {
+
+        app()->environment('production') ? $isTest = 'false' : $isTest = 'true';
+
+        $data = [
+            'siteCode' => config('services.ozow.siteCode'),
+            'CountryCode' => 'ZA',
+            'CurrencyCode' => 'ZAR',
+            'Amount' => number_format(sprintf('%.2f', $amount), 2, '.', ''),
+            'TransactionReference' => $reference,
+            'BankReference' => config(('app.name')),
+            'CancelUrl' => config('app.url').'/checkout',
+            'SuccessUrl' => config('app.url').'/payment-confirmation',
+            'NotifyUrl' => config('app.url').'/order-confirmation',
+            'isTest' => $isTest,
+        ];
+
+        $output = '';
+
+        // concatenate variables as string
+        foreach ($data as $key => $val) {
+            if (! empty($val)) {
+                $output .= trim($val);
+            }
+        }
+
+        $string = strtolower($output.config('services.ozow.privateKey'));
+        $data['HashCheck'] = hash('SHA512', $string);
+
+        return $data;
+    }
 }

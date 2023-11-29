@@ -174,6 +174,13 @@
                 </div>
                 <div>
                     <a
+                        href="{{ route('deliveries') }}"
+                        class="text-teal-500 hover:text-teal-600"
+                        wire:navigate
+                    >Delivery</a>
+                </div>
+                <div>
+                    <a
                         href="{{ route('returns') }}"
                         class="text-teal-500 hover:text-teal-600"
                         wire:navigate

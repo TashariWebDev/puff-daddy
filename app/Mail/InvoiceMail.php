@@ -26,7 +26,7 @@ class InvoiceMail extends Mailable implements ShouldQueue
             'order' => $this->order->load('items'),
         ])->render();
 
-        $url = storage_path("app/public/documents/$this->order->number.pdf");
+        $url = storage_path("app/public/puffdaddy/documents/$this->order->number.pdf");
 
         if (file_exists($url)) {
             unlink($url);
@@ -41,7 +41,9 @@ class InvoiceMail extends Mailable implements ShouldQueue
             ->setScreenshotType('pdf', 60)
             ->save($url);
 
+        $file = storage_path('app/public/puffdaddy/documents/'.$this->order->number.'.pdf');
+
         return $this->view('emails.invoice')
-            ->attach($url);
+            ->attach($file);
     }
 }

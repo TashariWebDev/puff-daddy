@@ -1,5 +1,5 @@
 <div>
-
+    
     {{-- Business Info --}}
     <div class="mb-3">
         <div
@@ -14,11 +14,11 @@
                     Kindly supply us with your business and contact info.
                 </p>
             </button>
-
+            
             @if($activeTab === 'business')
                 <div class="p-4">
                     <form wire:submit="updateCustomer">
-
+                        
                         <div class="py-2">
                             <label
                                 for="name"
@@ -38,8 +38,8 @@
                             </div>
                             @enderror
                         </div>
-
-
+                        
+                        
                         <div class="py-2">
                             <label
                                 for="email"
@@ -60,7 +60,7 @@
                             </div>
                             @enderror
                         </div>
-
+                        
                         <div class="py-2">
                             <label
                                 for="phone"
@@ -81,8 +81,8 @@
                             </div>
                             @enderror
                         </div>
-
-
+                        
+                        
                         <div class="py-2">
                             <label
                                 for="alt_phone"
@@ -102,8 +102,8 @@
                             </div>
                             @enderror
                         </div>
-
-
+                        
+                        
                         <div class="py-2">
                             <label
                                 for="registered_company_name"
@@ -123,8 +123,8 @@
                             </div>
                             @enderror
                         </div>
-
-
+                        
+                        
                         <div class="py-2">
                             <label
                                 for="company"
@@ -144,8 +144,8 @@
                             </div>
                             @enderror
                         </div>
-
-
+                        
+                        
                         <div class="py-2">
                             <label
                                 for="vat_number"
@@ -165,7 +165,7 @@
                             </div>
                             @enderror
                         </div>
-
+                        
                         <div class="flex justify-end items-center px-6 pb-10">
                             <x-button class="w-1/5 button-green">
                                 Save
@@ -176,7 +176,7 @@
             @endif
         </div>
     </div>
-
+    
     {{-- Address Info --}}
     <div class="mb-3">
         <div
@@ -189,11 +189,11 @@
                 <h3 class="text-lg">Delivery Addresses</h3>
                 <p class="text-xs text-gray-300">Add all your delivery addresses</p>
             </button>
-
+            
             @if($activeTab === 'address')
                 <div class="p-4">
                     <form wire:submit.prevent="updateAddress">
-
+                        
                         <div class="py-2">
                             <label
                                 for="line_one"
@@ -213,7 +213,7 @@
                             </div>
                             @enderror
                         </div>
-
+                        
                         <div class="py-2">
                             <label
                                 for="line_two"
@@ -232,7 +232,7 @@
                             </div>
                             @enderror
                         </div>
-
+                        
                         <div class="py-2">
                             <label
                                 for="suburb"
@@ -251,7 +251,7 @@
                             </div>
                             @enderror
                         </div>
-
+                        
                         <div class="py-2">
                             <label
                                 for="city"
@@ -271,7 +271,7 @@
                             </div>
                             @enderror
                         </div>
-
+                        
                         <div class="py-2">
                             <label
                                 for="province"
@@ -299,8 +299,8 @@
                             </div>
                             @enderror
                         </div>
-
-
+                        
+                        
                         <div class="py-2">
                             <label
                                 for="postal_code"
@@ -320,8 +320,8 @@
                             </div>
                             @enderror
                         </div>
-
-
+                        
+                        
                         <div class="flex justify-end items-center px-6 pb-10">
                             <x-button class="button-green">
                                 Save
@@ -332,8 +332,77 @@
             @endif
         </div>
     </div>
-
-
+    
+    
+    {{--Company Docs--}}
+    
+    <div class="mb-3">
+        <div
+            class="bg-white rounded-b-lg shadow"
+        >
+            <button
+                class="block p-2 w-full text-left text-white bg-black border-t shadow"
+                wire:click="$set('activeTab','documents')"
+            >
+                <h3 class="text-lg">Company Documents</h3>
+                <p class="text-xs text-gray-300">Upload your company documents</p>
+            </button>
+            
+            @if($activeTab === 'documents')
+                <div class="p-4">
+                    <form wire:submit.prevent="updateCompanyDocuments">
+                        
+                        <div class="py-2">
+                            <label
+                                for="cipc_document"
+                            >Company CK Document</label>
+                            <div class="mt-1">
+                                <input
+                                    id="line_one"
+                                    type="file"
+                                    required
+                                    wire:model.live="customerDocumentForm.cipc_documents"
+                                >
+                            </div>
+                            @error('customerDocumentForm.cipc_documents')
+                            <div class="py-1">
+                                <p class="text-xs text-pink-600">{{ $message }}</p>
+                            </div>
+                            @enderror
+                        </div>
+                        
+                        <div class="py-2">
+                            <label
+                                for="id_document"
+                            >Company CK Document</label>
+                            <div class="mt-1">
+                                <input
+                                    id="line_one"
+                                    type="file"
+                                    required
+                                    wire:model.live="customerDocumentForm.id_document"
+                                >
+                            </div>
+                            @error('customerDocumentForm.id_document')
+                            <div class="py-1">
+                                <p class="text-xs text-pink-600">{{ $message }}</p>
+                            </div>
+                            @enderror
+                        </div>
+                        
+                        
+                        <div class="flex justify-end items-center px-6 pb-10">
+                            <x-button class="button-green">
+                                Save
+                            </x-button>
+                        </div>
+                    </form>
+                </div>
+            @endif
+        </div>
+    </div>
+    
+    
     <div>
         <div class="flex justify-end items-center py-4 px-2 w-full border-t">
             <x-button

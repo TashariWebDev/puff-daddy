@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Wholesale;
 
 use App\Livewire\Forms\CustomerAddressUpdateForm;
 use App\Livewire\Forms\CustomerUpdateForm;
+use App\Livewire\Forms\DocumentForm;
 use App\Livewire\Traits\WithNotifications;
 use App\Models\Customer;
 use Illuminate\Contracts\Foundation\Application;
@@ -22,6 +23,8 @@ class WholesaleForm extends Component
     public CustomerUpdateForm $customerUpdateForm;
 
     public CustomerAddressUpdateForm $customerAddressUpdateForm;
+
+    public DocumentForm $customerDocumentForm;
 
     public Customer $customer;
 
@@ -43,6 +46,7 @@ class WholesaleForm extends Component
     public function mount(): void
     {
         $this->customerUpdateForm->setCustomer();
+        $this->customerDocumentForm->setCustomer();
         $this->customerAddressUpdateForm->setAddress();
     }
 
@@ -56,6 +60,13 @@ class WholesaleForm extends Component
     {
         $this->customerAddressUpdateForm->update();
         $this->notify('Address updated');
+
+    }
+
+    public function updateCompanyDocuments(): void
+    {
+        $this->customerDocumentForm->update();
+        $this->notify('Documents uploaded');
 
     }
 

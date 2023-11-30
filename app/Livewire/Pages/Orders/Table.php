@@ -46,11 +46,11 @@ class Table extends Component
 
     }
 
-    public function email(Order $order)
+    public function email(Order $order): void
     {
 
         $view = view('templates.pdf.invoice', [
-            'order' => $this->load('items'),
+            'order' => $order->load('items'),
         ])->render();
 
         $url = storage_path("app/public/documents/$this->number.pdf");

@@ -68,9 +68,7 @@ class Table extends Component
             ->setScreenshotType('pdf', 60)
             ->save($url);
 
-        if (! Storage::disk('public')->exists("documents/$order->number.pdf")) {
-            Mail::to(auth()->user())->send(new InvoiceMail($url));
-        }
+        Mail::to(auth()->user()->email)->queue(new InvoiceMail($url));
 
     }
 

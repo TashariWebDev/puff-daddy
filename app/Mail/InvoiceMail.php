@@ -2,26 +2,46 @@
 
 namespace App\Mail;
 
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Spatie\Browsershot\Browsershot;
 
 class InvoiceMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $file;
+    public Order $order;
 
-    public function __construct($file)
+    public function __construct(Order $order)
     {
-        $this->file = $file;
+        $this->order = $order;
     }
 
     public function build(): self
     {
+        $view = view('templates.pdf.invoice', [
+            'order' => $this->order->load('items'),
+        ])->render();
+
+        $url = storage_path("app/public/documents/$this->order->number.pdf");
+
+        if (file_exists($url)) {
+            unlink($url);
+        }
+
+        Browsershot::html($view)
+            ->showBackground()
+            ->ignoreHttpsErrors()
+            ->emulateMedia('print')
+            ->format('a4')
+            ->paperSize(297, 210)
+            ->setScreenshotType('pdf', 60)
+            ->save($url);
 
         return $this->view('emails.invoice')
-            ->attach($this->file);
+            ->attach($url);
     }
 }

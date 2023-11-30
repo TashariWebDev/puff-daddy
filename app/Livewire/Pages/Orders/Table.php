@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Browsershot\Browsershot;
 use Spatie\Browsershot\Exceptions\CouldNotTakeBrowsershot;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -49,26 +48,9 @@ class Table extends Component
     public function email(Order $order): void
     {
 
-        $view = view('templates.pdf.invoice', [
-            'order' => $order->load('items'),
-        ])->render();
+        Mail::to(auth()->user())->queue(new InvoiceMail($order));
 
-        $url = storage_path("app/public/documents/$order->number.pdf");
-
-        if (file_exists($url)) {
-            unlink($url);
-        }
-
-        Browsershot::html($view)
-            ->showBackground()
-            ->ignoreHttpsErrors()
-            ->emulateMedia('print')
-            ->format('a4')
-            ->paperSize(297, 210)
-            ->setScreenshotType('pdf', 60)
-            ->save($url);
-
-        Mail::to(auth()->user()->email)->queue(new InvoiceMail($url));
+        $this->notify('We will send you a copy shortly');
 
     }
 

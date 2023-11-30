@@ -354,7 +354,7 @@
                         
                         <div class="py-2">
                             <label
-                                for="cipc_document"
+                                for="cipc_documents"
                             >Company CK Document</label>
                             <div class="mt-1">
                                 <input

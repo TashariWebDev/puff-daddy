@@ -3,10 +3,13 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Customer;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\Form;
 
 class DocumentForm extends Form
 {
+    use WithFileUploads;
+
     public Customer $customer;
 
     public $id_document;

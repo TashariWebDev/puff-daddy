@@ -35,6 +35,13 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::view('wholesale-application', 'wholesale-application')->name('wholesale-application');
     Route::view('wholesale-application/form',
         'wholesale-application-form')->name('wholesale-application-form');
+
+    Route::get('/imitate/{id}', function () {
+        Auth::loginUsingId(request('id'));
+
+        return redirect('/');
+    })
+        ->name('imitate');
 });
 
 require __DIR__.'/auth.php';

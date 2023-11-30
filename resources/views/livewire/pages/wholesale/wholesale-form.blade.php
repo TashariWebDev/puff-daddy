@@ -374,7 +374,7 @@
                         <div class="py-2">
                             <label
                                 for="id_document"
-                            >Company CK Document</label>
+                            >ID Document</label>
                             <div class="mt-1">
                                 <input
                                     id="line_one"

@@ -21,7 +21,7 @@ class InvoiceMail extends Mailable implements ShouldQueue
 
     public function build(): self
     {
-        $file = storage_path("app/public/documents/$this->order->number.pdf");
+        $file = storage_path('app/public/documents/'.$this->order->number.'.pdf');
 
         return $this->view('emails.invoice')
             ->attach($file);

@@ -10,7 +10,25 @@
         name="csrf-token"
         content="{{ csrf_token() }}"
     >
-    
+
+    @if(app()->isProduction())
+        <!-- Google Tag Manager -->
+        <script>(function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start":
+                        new Date().getTime(), event: "gtm.js"
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src =
+                    "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-WZ82566B");</script>
+        <!-- End Google Tag Manager -->
+    @endif
+
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
@@ -24,22 +42,22 @@
         href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700;900&family=Poppins&display=swap"
         rel="stylesheet"
     >
-    
+
     <title>{{ $title ?? config('app.name', 'Laravel') }}</title>
-    
+
     <meta
         name="description"
         content="{{ $description ?? '' }}"
     />
-    
+
     <meta
         name="Keywords"
         content="{{ $keywords ?? '' }}"
     >
-    
+
     <x-favicon />
-    
-    <!-- Scripts -->
+
+        <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body
@@ -49,9 +67,22 @@
     x-on:open-modal.window="document.getElementById('body').classList.add('overflow-hidden')"
     x-on:close-modal.window="document.getElementById('body').classList.remove('overflow-hidden')"
 >
-    
+
+    @if(app()->isProduction())
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ82566B"
+                    height="0"
+                    width="0"
+                    style="display:none;visibility:hidden"
+            ></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    @endif
+
+
     <livewire:verify-age />
-    
+
     <div class="fixed right-0 bottom-0 z-50 m-6 bg-white bg-opacity-60 rounded-full shadow-xl hover:bg-opacity-100 dark:bg-slate-900"
     >
         <a href="https://wa.me/+2765444843">
@@ -70,16 +101,16 @@
             </svg>
         </a>
     </div>
-    
-    
+
+
     <x-flash-notification />
-    
+
     <livewire:shared.navigation />
-    
+
     <div class="lg:pt-20">
         {{ $slot }}
     </div>
-    
+
     <livewire:shared.footer />
 
 </body>

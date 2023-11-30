@@ -53,7 +53,7 @@ class Table extends Component
             'order' => $order->load('items'),
         ])->render();
 
-        $url = storage_path("app/public/documents/$this->number.pdf");
+        $url = storage_path("app/public/documents/$order->number.pdf");
 
         if (file_exists($url)) {
             unlink($url);

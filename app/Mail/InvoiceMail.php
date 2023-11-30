@@ -4,12 +4,12 @@ namespace App\Mail;
 
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 use Spatie\Browsershot\Browsershot;
 
-class InvoiceMail extends Mailable implements ShouldQueue
+class InvoiceMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,7 +26,7 @@ class InvoiceMail extends Mailable implements ShouldQueue
             'order' => $this->order->load('items'),
         ])->render();
 
-        $url = storage_path("app/public/puffdaddy/documents/$this->order->number.pdf");
+        $url = storage_path('app/public/documents/'.$this->order->number.'.pdf');
 
         if (file_exists($url)) {
             unlink($url);
@@ -41,9 +41,19 @@ class InvoiceMail extends Mailable implements ShouldQueue
             ->setScreenshotType('pdf', 60)
             ->save($url);
 
-        $file = storage_path('app/public/puffdaddy/documents/'.$this->order->number.'.pdf');
+        return $this->view('emails.invoice');
+    }
 
-        return $this->view('emails.invoice')
-            ->attach($file);
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, Attachment>
+     */
+    public function attachments(): array
+    {
+        return [
+            Attachment::fromPath(storage_path('app/public/documents/'.$this->order->number.'.pdf')),
+        ];
+
     }
 }

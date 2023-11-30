@@ -48,7 +48,7 @@ class Table extends Component
     public function email(Order $order): void
     {
 
-        Mail::to(auth()->user())->queue(new InvoiceMail($order));
+        Mail::to(auth()->user())->send(new InvoiceMail($order));
 
         $this->notify('We will send you a copy shortly');
 

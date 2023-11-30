@@ -35,8 +35,6 @@ class DocumentForm extends Form
 
         $this->customer->makeVisible(['cipc_documents', 'id_document']);
 
-        $this->cipc_documents = $this->customer->cipc_documents;
-        $this->id_document = $this->customer->id_document;
     }
 
     public function update(): void

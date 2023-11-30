@@ -69,7 +69,7 @@ class Table extends Component
             ->save($url);
 
         if (! Storage::disk('public')->exists("documents/$order->number.pdf")) {
-            Mail::to(auth()->user())->send(new InvoiceMail($order));
+            Mail::to(auth()->user())->send(new InvoiceMail($url));
         }
 
     }

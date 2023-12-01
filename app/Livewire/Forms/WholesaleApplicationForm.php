@@ -111,13 +111,16 @@ class WholesaleApplicationForm extends Form
         $validated = $this->validate();
 
         $this->customer->address->updateOrCreate([
-            'line_one' => $validated['line_one'],
-            'line_two' => $validated['line_two'],
-            'city' => $validated['city'],
-            'suburb' => $validated['suburb'],
-            'province' => $validated['province'],
-            'postal_code' => $validated['postal_code'],
-        ]);
+            'user_id' => auth()->id(),
+        ],
+            [
+                'line_one' => $validated['line_one'],
+                'line_two' => $validated['line_two'],
+                'city' => $validated['city'],
+                'suburb' => $validated['suburb'],
+                'province' => $validated['province'],
+                'postal_code' => $validated['postal_code'],
+            ]);
 
         $this->customer->update([
             'name' => $validated['name'],

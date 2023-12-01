@@ -388,7 +388,6 @@
                         
                         <div class="flex justify-between items-baseline w-32 lg:justify-start">
                             <button id="yoco-checkout-button"
-                                    disabled
                                     class="block mt-3 w-full h-full bg-gray-900 rounded-lg shadow lg:mt-0 disabled:opacity-70 disabled:cursor-not-allowed"
                                     x-on:click="$refs.ozow.submit()"
                             >

@@ -23,6 +23,8 @@ class Checkout extends Component
     use WithBilling;
     use WithNotifications;
 
+    public $order;
+
     public $editDetails = false;
 
     public $editAddress = false;
@@ -83,19 +85,16 @@ class Checkout extends Component
 
     public $body = '';
 
-    public function getOrderProperty()
+    public function mount()
     {
-        return Order::where([
+        $this->order = Order::where([
             'customer_id' => auth()->id(),
             'status' => null,
         ])
             ->withSum('items', 'qty')
             ->with('items.product')
-            ->sole();
-    }
+            ->first();
 
-    public function mount()
-    {
         if (! $this->order) {
             return redirect('/');
         }

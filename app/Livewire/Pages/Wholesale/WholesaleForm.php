@@ -2,9 +2,7 @@
 
 namespace App\Livewire\Pages\Wholesale;
 
-use App\Livewire\Forms\CustomerAddressUpdateForm;
-use App\Livewire\Forms\CustomerUpdateForm;
-use App\Livewire\Forms\DocumentForm;
+use App\Livewire\Forms\WholesaleApplicationForm;
 use App\Livewire\Traits\WithNotifications;
 use App\Models\Customer;
 use Illuminate\Contracts\Foundation\Application;
@@ -20,11 +18,7 @@ class WholesaleForm extends Component
     use WithFileUploads;
     use WithNotifications;
 
-    public CustomerUpdateForm $customerUpdateForm;
-
-    public CustomerAddressUpdateForm $customerAddressUpdateForm;
-
-    public DocumentForm $customerDocumentForm;
+    public WholesaleApplicationForm $form;
 
     public Customer $customer;
 
@@ -45,36 +39,13 @@ class WholesaleForm extends Component
 
     public function mount(): void
     {
-        $this->customerUpdateForm->setCustomer();
-        $this->customerDocumentForm->setCustomer();
-        $this->customerAddressUpdateForm->setAddress();
-    }
-
-    public function updateCustomer(): void
-    {
-        $this->customerUpdateForm->update();
-        $this->notify('Profile updated');
-    }
-
-    public function updateAddress(): void
-    {
-        $this->customerAddressUpdateForm->update();
-        $this->notify('Address updated');
-
-    }
-
-    public function updateCompanyDocuments(): void
-    {
-        $this->customerDocumentForm->update();
-        $this->notify('Documents uploaded');
-
+        $this->form->setCustomer();
+        $this->form->setAddress();
     }
 
     public function submit(): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
     {
-        auth()->user()->update([
-            'requested_wholesale_account' => true,
-        ]);
+        $this->form->update();
 
         $this->notify('Application submitted');
 

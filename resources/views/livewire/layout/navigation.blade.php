@@ -56,8 +56,8 @@ new class extends Component {
                     </x-nav-link>
 
                     @if(!request()->user()->isWholesale())
-                        <x-nav-link :href="route('wholesale-application')"
-                                    :active="request()->routeIs('wholesale-application')"
+                        <x-nav-link :href="route('wholesale-application-form')"
+                                    :active="request()->routeIs('wholesale-application-form')"
                                     wire:navigate
                         >
                             Wholesale Application

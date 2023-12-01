@@ -1,5 +1,5 @@
 @php use App\Models\SystemSetting; @endphp
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -43,30 +43,29 @@
 <body>
     <div class="p-2 w-screen font-sans antialiased bg-white">
         <div class="p-6 bg-white rounded">
-            <section
-                class="pb-4"
-                id="header"
-            >
-                <div class="grid grid-cols-2">
-                    <x-document.company />
-                    <div class="text-right text-[10px]">
-                        <ul>
-
-                            <li class="font-extrabold uppercase">Credit Note</li>
-                            <li class="font-semibold leading-tight uppercase text-[10px]">{{ $credit->created_at }}</li>
+            <section id="header">
+                <div class="grid grid-cols-2 space-x-2">
+                    <div>
+                        <img src="{{ asset('assets/full-logo.png') }}"
+                             alt=""
+                             class="w-48"
+                        >
+                    </div>
+                    <div class="flex justify-between items-end p-1 space-x-8 bg-gray-100 rounded text-[10px]">
+                        <x-document.company />
+                        <ul class="text-right">
+                            <li class="font-extrabold text-teal-500 uppercase">CREDIT NOTE</li>
+                            <li class="font-semibold leading-tight uppercase whitespace-nowrap text-[10px]">{{ $credit->created_at->format('d-m-y') }}</li>
                             <li class="font-semibold leading-tight uppercase text-[10px]">
-                                <span class="font-medium leading-tight text-gray-500">
-                                    {{ '( ' . $credit->sales_channel->name . ' )' }}
-                                </span>
                                 {{ $credit->number }}
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 pt-2 space-x-2">
-                    <div class="border">
-                        <div class="px-1 bg-gray-300">
-                            <p class="font-bold uppercase text-[10px] text-slate-900">Customer Details</p>
+                <div class="grid grid-cols-2 py-2 space-x-2">
+                    <div>
+                        <div class="px-1 bg-gray-100 rounded">
+                            <p class="font-bold uppercase text-[10px]">Details:</p>
                         </div>
                         <ul class="py-2 px-1">
                             <li>
@@ -95,40 +94,42 @@
             <div id="body">
 
                 <table class="w-full">
-                    <thead class="bg-gray-300">
+                    <thead class="bg-gray-100 rounded-t">
                         <tr>
-                            <th class="font-bold leading-snug text-left uppercase text-[10px] text-slate-900">SKU/CODE
+                            <th class="font-bold leading-snug text-left uppercase text-[10px]">SKU
                             </th>
                             <th
-                                class="col-span-2 font-bold leading-snug text-left uppercase text-[10px] text-slate-900">
+                                class="col-span-2 font-bold leading-snug text-left uppercase text-[10px]"
+                            >
                                 Item
                             </th>
-                            <th class="font-bold leading-snug text-right uppercase text-[10px] text-slate-900">Qty</th>
-                            <th class="font-bold leading-snug text-right uppercase text-[10px] text-slate-900">Price
+                            <th class="font-bold leading-snug text-right uppercase text-[10px]">Qty</th>
+                            <th class="font-bold leading-snug text-right uppercase text-[10px]">Price
                             </th>
-                            <th class="font-bold leading-snug text-right uppercase text-[10px] text-slate-900">
+                            <th class="font-bold leading-snug text-right uppercase text-[10px]">
                                 Discount
                             </th>
-                            <th class="font-bold leading-snug text-right uppercase text-[10px] text-slate-900">Amount
+                            <th class="font-bold leading-snug text-right uppercase text-[10px]">Amount
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($credit->items as $item)
-                            <tr class="py-1 border-b border-gray-300 border-dashed break-inside-avoid">
+                            <tr class="py-2 border-b border-gray-100 break-inside-avoid">
 
                                 <td class="text-left">
                                     <p class="font-semibold uppercase text-[8px]">{{ $item->product->sku }}</p>
                                 </td>
 
-                                <td class="col-span-2 text-left">
-                                    <p class="font-bold leading-snug text-[10px]">
+                                <td class="col-span-2 leading-tight text-left">
+                                    <p class="font-bold leading-tight text-[10px]">
                                         {{ ucwords($item->product->brand) }} {{ ucwords($item->product->name) }}
                                     </p>
-                                    <span class="flex flex-wrap leading-snug text-[8px]">
+                                    <span class="flex flex-wrap leading-tight text-[10px]">
                                         @foreach ($item->product->features as $feature)
                                             <span
-                                                class="pr-1 font-semibold leading-snug text-[8px]">{{ ucwords($feature->name) }}</span>
+                                                class="pr-1 font-semibold leading-tight text-[8px]"
+                                            >{{ ucwords($feature->name) }}</span>
                                         @endforeach
                                     </span>
                                 </td>
@@ -152,39 +153,52 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right"><p class="text-[10px]">Delivery</p></td>
+                            <td class="text-right">
+                                <p class="text-[10px]">
+                                    R {{ number_format($credit->delivery_charge, 2) }}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right border-b border-gray-300 border-dashed">
+                                <p class="font-bold text-[10px]">TOTAL</p></td>
+                            <td class="text-right rounded border-b border-gray-300 border-dashed">
+                                <p class="font-bold text-[10px]">
+                                    R {{ number_format($credit->getTotal(), 2) }}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right border-b border-gray-300 border-dashed"><p class="text-[10px]">VAT</p>
+                            </td>
+                            <td class="text-right border-b border-gray-300 border-dashed">
+                                <p class="text-[10px]">
+                                    R {{ number_format(vat($credit->getTotal()), 2) }}
+                                </p>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-
-                <div class="block mt-4 border-t border-gray-500 break-before-avoid-page break-inside-avoid">
-                    <div class="grid grid-cols-4 break-after-avoid-page">
-                        <p class="text-left whitespace-nowrap text-[10px]">
-                            <span class="font-semibold uppercase">Sub Total: </span> R
-                            {{ number_format($credit->getSubTotal(), 2) }}
-                        </p>
-                        <p class="text-left whitespace-nowrap text-[10px]">
-                            <span class="font-semibold uppercase">Delivery:</span>
-                            R {{ number_format($credit->delivery_charge, 2) }}
-                        </p>
-                        <p class="text-left whitespace-nowrap text-[10px]">
-                            <span class="font-semibold uppercase">VAT: </span>
-                            R {{ number_format(vat($credit->getTotal()), 2) }}
-                        </p>
-                        <p class="p-1 font-bold text-right whitespace-nowrap bg-gray-300 text-[10px]">
-                            <span class="font-bold uppercase">Credit: </span>
-                            R {{ number_format($credit->getTotal(), 2) }}
-                        </p>
-                    </div>
-                </div>
 
                 <section
                     class="pt-2 mt-6 break-before-avoid-page break-inside-avoid-page"
                     id="footer"
                 >
-                    <div class="py-1 text-center bg-gray-300 rounded">
-                        <p class="font-bold uppercase text-[10px]">
-                            thank you for your support
-                        </p>
-                    </div>
+
                     <div class="grid grid-cols-3 pt-2 break-before-avoid-page break-inside-avoid-page">
                         <x-document.banking reference="{{ $credit->number }}" />
                     </div>

@@ -36,7 +36,7 @@ class FeaturedProducts extends Component
             ->where('type', '=', 'purchase')
             ->orderByDesc('created_at')
             ->take(6)
-            ->inRandomOrder()
+            ->inRandomOrder(2)
             ->pluck('product_id');
 
         return Product::query()

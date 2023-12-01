@@ -35,8 +35,6 @@ class FeaturedProducts extends Component
         $stocks = Stock::query()
             ->where('type', '=', 'purchase')
             ->orderByDesc('created_at')
-            ->take(6)
-            ->inRandomOrder(2)
             ->pluck('product_id');
 
         return Product::query()
@@ -45,6 +43,8 @@ class FeaturedProducts extends Component
             ->withStockCount()
             ->with('features')
             ->whereIn('id', $stocks)
+            ->inRandomOrder()
+            ->limit(6)
             ->get();
     }
 

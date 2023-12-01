@@ -110,8 +110,8 @@ class WholesaleApplicationForm extends Form
     {
         $validated = $this->validate();
 
-        $this->customer->address->updateOrCreate([
-            'user_id' => auth()->id(),
+        $this->customer->address()->updateOrCreate([
+            'customer_id' => auth()->id(),
         ],
             [
                 'line_one' => $validated['line_one'],

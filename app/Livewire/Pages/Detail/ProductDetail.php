@@ -39,6 +39,7 @@ class ProductDetail extends Component
     public function product(): Model|_IH_Product_QB|Builder|Product
     {
         return Product::where('id', '=', $this->productId)
+            ->active()
             ->availableToCustomerType()
             ->firstOrFail();
     }

@@ -36,7 +36,7 @@
                     <p class="text-xl font-bold">R {{ number_format($this->product->getPrice(),2) }}</p>
                 </div>
 
-                @if($this->product->product_collection?->products?->count())
+                @if($this->productCollection->count())
                     <div class="py-8">
                         <div>
                             <label for="collection">Select an option</label>
@@ -59,20 +59,20 @@
                                 x-show="show"
                                 x-transition
                             >
-                                @foreach($this->product->product_collection->products as $product)
+                                @foreach($this->productCollection as $collection)
                                     <button
-                                        wire:click="updateProduct({{ $product->id }})"
+                                        wire:click="updateProduct({{ $collection->id }})"
                                         class="block py-2 px-2 w-full text-left bg-white border-b hover:bg-gray-100"
-                                        tabindex="{{ $product->id }}"
+                                        tabindex="{{ $collection->id }}"
                                         x-on:click="show = !show"
                                     >
                                         <div class="flex justify-between items-center">
                                             <div class="flex items-center space-x-1 font-semibold uppercase lg:space-x-3 lg:text-base text-[10px]">
-                                                <p class="whitespace-nowrap">{{ $product->name }}</p>
-                                                @foreach($product->features as $feature)
+                                                <p class="whitespace-nowrap">{{ $collection->name }}</p>
+                                                @foreach($collection->features as $feature)
                                                     <p class="whitespace-nowrap">{{ $feature->name }}</p>
                                                 @endforeach
-                                                @if($product->stocks->sum('qty') <= 0)
+                                                @if($collection->stocks_sum_qty < 1)
                                                     <p class="text-xs text-pink-600">(sold out)</p>
                                                 @endif
                                             </div>
@@ -87,7 +87,7 @@
                 {{-- CTA - BUY NOW--}}
                 <div>
                     <div class="mt-2.5">
-                        @if ($this->product->stocks->sum('qty') > 0)
+                        @if ($this->product->stocks_sum_qty > 0)
                             <div class="flex space-x-0.5">
                                 <x-button
                                     class="flex justify-between items-center w-full lg:w-72 button-green"
@@ -118,7 +118,7 @@
 
 
                         <div>
-                            @if ($this->product->stocks->sum('qty') <= 0)
+                            @if ($this->product->stocks_sum_qty <= 0)
                                 <div x-data="{ show:false }">
 
                                     <x-button
@@ -186,7 +186,7 @@
                         class="text-sm font-semibold text-gray-600"
 
                     >Qty required:
-                        <span>{{ $qty }} / {{$selectedProduct->stocks->sum('qty')}}</span>
+                        <span>{{ $qty }} / {{$selectedProduct->stocks_sum_qty}}</span>
                     </h2>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -203,11 +203,11 @@
                             wire:model.live="qty"
                             id="qty"
                             min="1"
-                            max="{{ $selectedProduct->stocks->sum('qty') }}"
+                            max="{{ $selectedProduct->stocks_sum_qty }}"
                         >
                     </div>
 
-                    @if($selectedProduct->stocks->sum('qty') >= 5)
+                    @if($selectedProduct->stocks_sum_qty >= 5)
                         <div>
                             <div lass="pb-1">
                                 <label
@@ -224,7 +224,7 @@
                         </div>
                     @endif
 
-                    @if($selectedProduct->stocks->sum('qty') >= 10)
+                    @if($selectedProduct->stocks_sum_qty >= 10)
                         <div>
                             <div lass="pb-1">
                                 <label
@@ -241,7 +241,7 @@
                         </div>
                     @endif
 
-                    @if($selectedProduct->stocks->sum('qty') > 5)
+                    @if($selectedProduct->stocks_sum_qty > 5)
                         <div>
                             <div class="pb-1">
                                 <label
@@ -251,9 +251,9 @@
                             </div>
                             <x-button
                                 class="py-2 w-32 text-center button-green"
-                                wire:click="$set('qty',{{ $selectedProduct->stocks->sum('qty') }})"
+                                wire:click="$set('qty',{{ $selectedProduct->stocks_sum_qty }})"
                             >
-                                + {{ $selectedProduct->stocks->sum('qty') }}
+                                + {{ $selectedProduct->stocks_sum_qty }}
                             </x-button>
                         </div>
                     @endif

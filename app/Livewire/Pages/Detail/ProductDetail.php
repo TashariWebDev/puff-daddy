@@ -41,6 +41,7 @@ class ProductDetail extends Component
         return Product::where('id', '=', $this->productId)
             ->active()
             ->availableToCustomerType()
+            ->withStockCount()
             ->firstOrFail();
     }
 
@@ -50,6 +51,17 @@ class ProductDetail extends Component
         return Brand::where('name', '=', $this->product->brand)
             ->with('page')
             ->first();
+    }
+
+    #[Computed]
+    public function productCollection()
+    {
+        return Product::where('id', '!=', $this->productId)
+            ->where('product_collection_id', '=', $this->product->product_collection_id)
+            ->active()
+            ->availableToCustomerType()
+            ->withStockCount()
+            ->get();
     }
 
     public function updateProduct($productId): void

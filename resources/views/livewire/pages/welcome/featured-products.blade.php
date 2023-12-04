@@ -1,9 +1,9 @@
 <div>
-    @if($this->latestProductsPurchased->count())
+    @if($this->featuredProducts->count())
         <div class="overflow-hidden py-6 px-1 mx-auto bg-white sm:px-6 lg:px-8">
 
             <div class="grid grid-cols-2 gap-x-2 gap-y-4 -mx-px sm:mx-0 md:grid-cols-4 lg:grid-cols-6 lg:gap-4 lg:gap-y-6">
-                @foreach($this->latestProductsPurchased as $product)
+                @foreach($this->featuredProducts as $product)
                     <x-products.card :product="$product" />
                 @endforeach
             </div>

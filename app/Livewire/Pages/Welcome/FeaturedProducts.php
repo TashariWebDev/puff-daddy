@@ -4,7 +4,6 @@ namespace App\Livewire\Pages\Welcome;
 
 use App\Livewire\Traits\WithNotifications;
 use App\Models\Product;
-use App\Models\Stock;
 use App\Models\StockAlert;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -30,19 +29,15 @@ class FeaturedProducts extends Component
     public string $email = '';
 
     #[Computed(persist: true)]
-    public function latestProductsPurchased(): _IH_Product_C|Collection|array
+    public function featuredProducts(): _IH_Product_C|Collection|array
     {
-        $stocks = Stock::query()
-            ->where('type', '=', 'purchase')
-            ->orderByDesc('created_at')
-            ->pluck('product_id');
-
         return Product::query()
             ->availableToCustomerType()
             ->onlyActive()
             ->withStockCount()
+            ->inStock()
+            ->where('is_featured', true)
             ->with('features')
-            ->whereIn('id', $stocks)
             ->inRandomOrder()
             ->limit(6)
             ->get();

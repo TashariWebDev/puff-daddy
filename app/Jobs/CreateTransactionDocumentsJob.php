@@ -20,11 +20,11 @@ class CreateTransactionDocumentsJob implements ShouldQueue
         $this->transactionId = $transactionId;
     }
 
-    public function handle()
+    public function handle(): void
     {
         Http::get(
             config('app.admin_url').
-                "/webhook/save-document/$this->transactionId"
+            "/api/save-document/$this->transactionId"
         );
     }
 }

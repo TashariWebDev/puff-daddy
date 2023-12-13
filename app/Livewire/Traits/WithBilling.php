@@ -96,8 +96,6 @@ trait WithBilling
             ]);
         }
 
-        $this->sendOrderEmails();
-
     }
 
     //    Ozow Integration

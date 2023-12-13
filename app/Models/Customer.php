@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Jobs\CreateTransactionDocumentsJob;
+use App\Mail\InvoiceMail;
+use App\Mail\OrderReceivedMail;
 use App\Mail\PaymentReceiptMail;
 use App\Mail\PaymentReceivedMail;
 use Illuminate\Database\Eloquent\Model;
@@ -114,6 +116,17 @@ class Customer extends Authenticatable
         );
 
         CreateTransactionDocumentsJob::dispatch($transaction->id);
+
+        if ($transaction->wasRecentlyCreated) {
+            \Illuminate\Support\Facades\Mail::to(auth()->user()->email)
+                ->send(new InvoiceMail($order));
+
+            Mail::to(config('mail.from.address'))
+                ->queue(new OrderReceivedMail(
+                    auth()->user(),
+                    $order)
+                );
+        }
 
         return $transaction;
     }

@@ -42,8 +42,6 @@ class PaymentConfirmation extends Component
             session()->forget('paymentId');
 
             $this->success = true;
-
-            $this->sendOrderEmails();
         }
 
         // Ozow

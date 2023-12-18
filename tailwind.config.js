@@ -43,8 +43,8 @@ export default {
                 slideUp: "slideUp 20s ease-in-out infinite",
                 fadeIn: "fadeIn 3s ease infinite",
                 zoom: "zoom 3s ease-in-out forwards",
-                ticker: "ticker 500s linear infinite",
-                'ticker-slow': "ticker 1500s linear infinite"
+                ticker: "ticker 400s linear infinite",
+                'ticker-slow': "ticker 1800s linear infinite"
             }
         }
     },

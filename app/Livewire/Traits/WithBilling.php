@@ -116,7 +116,6 @@ trait WithBilling
             'BankReference' => config(('app.name')),
             'CancelUrl' => config('app.url').'/checkout',
             'SuccessUrl' => config('app.url').'/payment-confirmation',
-            'NotifyUrl' => config('app.url').'/order-confirmation',
             'isTest' => $isTest,
         ];
 

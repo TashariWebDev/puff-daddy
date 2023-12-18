@@ -16,26 +16,26 @@ export default {
             },
             keyframes: {
                 ticker: {
-                    "0%": { transform: "translateX(0%)" },
-                    "100%": { transform: "translateX(-100%)" }
+                    "0%": {transform: "translateX(0%)"},
+                    "100%": {transform: "translateX(-100%)"}
                 },
                 wiggle: {
-                    "0%, 100%": { transform: "rotate(-3deg)" },
-                    "50%": { transform: "rotate(3deg)" }
+                    "0%, 100%": {transform: "rotate(-3deg)"},
+                    "50%": {transform: "rotate(3deg)"}
                 },
                 slideUp: {
-                    "0%": { transform: "translateY(-100%)" },
-                    "100%": { transform: "translateY(0)" }
+                    "0%": {transform: "translateY(-100%)"},
+                    "100%": {transform: "translateY(0)"}
                 },
                 fadeIn: {
-                    "0%": { opacity: "0" },
+                    "0%": {opacity: "0"},
                     // "50%": { opacity: "1" },
                     // "75%": { opacity: ".8" },
-                    "100%": { opacity: "1" }
+                    "100%": {opacity: "1"}
                 },
                 zoom: {
-                    "0%": { transform: "scale(1)" },
-                    "100%": { transform: "scale(1.15)" }
+                    "0%": {transform: "scale(1)"},
+                    "100%": {transform: "scale(1.15)"}
                 }
             },
             animation: {
@@ -43,7 +43,8 @@ export default {
                 slideUp: "slideUp 20s ease-in-out infinite",
                 fadeIn: "fadeIn 3s ease infinite",
                 zoom: "zoom 3s ease-in-out forwards",
-                ticker: "ticker 1300s linear infinite"
+                ticker: "ticker 500s linear infinite",
+                'ticker-slow': "ticker 1000s linear infinite"
             }
         }
     },

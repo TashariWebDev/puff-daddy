@@ -44,7 +44,7 @@ export default {
                 fadeIn: "fadeIn 3s ease infinite",
                 zoom: "zoom 3s ease-in-out forwards",
                 ticker: "ticker 500s linear infinite",
-                'ticker-slow': "ticker 1000s linear infinite"
+                'ticker-slow': "ticker 1500s linear infinite"
             }
         }
     },
